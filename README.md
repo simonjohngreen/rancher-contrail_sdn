@@ -44,6 +44,7 @@ kubectl get pods -A -o wide
 ```
 
 the config files for the Rancher build node are in /root
+
 the config files for the rke1 cluster integrated into contrail are in /root/cluster1
 
 example: connect to the rancher buildnode (it uses a fixed ip address)
@@ -55,9 +56,12 @@ example: connect to the rancher buildnode (it uses a fixed ip address)
 		1
 		kubectl get nodes
 ```
-#UI Access
+UI Access
+
 The racher cli is also assessible via the bastion on port 443. You need to either use a read dns name (see parameter RancherHostName which default to ranchernode.ranchercluster.com)
+
 Or use a fake name and add an entry to your /etc/hosts 
+
 example:
 ```
 54.229.135.100 ranchernode.ranchercluster.com #the ip is the bastion host public ip
@@ -68,6 +72,9 @@ The contrail cli is also assessible if you run the add-nat.sh towards the master
 ## Other hints
 
 You can override almost anything in the root stack parameters.
+
 when you are finished just delete the root stack in the aws console, or run ./delete.sh
+
 if you want to deploy into an existing VPC you can use just the rancher-nodes-rke1.stack and specify the id*** parameters manualy. 
+
 I've also included rke2 scripts and stacks. These are a work in progress, however contrail does come up and pods get an overlay ip address.
