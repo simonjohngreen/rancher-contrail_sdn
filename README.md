@@ -1,6 +1,6 @@
-
+###################################################################
 Rancher Kubernetes using Contrail SDN as the CNI Deployed into AWS 
-===================================================================
+###################################################################
 This automated stack creates:
 				A bastion host for controlled access
 				A Rancher build node running in kubernetes+helm
@@ -17,7 +17,7 @@ deploy the CloudFormation stack (this uses my s3 bucket rancher-cocntrail, this 
 
 Note: You can also create your own s3 bucket with ./push-to-s3.sh and it will push the deployer files up to it for you. 
 
-=====================================
+###################################################################
 How to ssh into a node via the bastion
 
 The CloudFormation stack outputs and the script output will give you commands to use on completion. 
@@ -49,7 +49,7 @@ example: connect to the rancher buildnode (it uses a fixed ip address)
 		1
 		kubectl get nodes
 
-====================================
+###################################################################
 #UI Access
 The racher cli is also assessible via the bastion on port 443. You need to either use a read dns name (see parameter RancherHostName which default to ranchernode.ranchercluster.com)
 Or use a fake name and add an entry to your /etc/hosts 
@@ -58,10 +58,10 @@ example:
 
 The contrail cli is also assessible if you run the add-nat.sh towards the master node, then https://[bastion public ip]:8143
 
-====================================
+###################################################################
 #Other hints
 #You can override almost anything in the root stack parameters.
 #when you are finished just delete the root stack in the aws console, or run ./delete.sh
 #if you want to deploy into an existing VPC you can use just the rancher-nodes-rke1.stack and specify the id*** parameters manualy. 
 #I've also included rke2 scripts and stacks. These are a work in progress, however contrail does come up and pods get an overlay ip address.
-======================================
+###################################################################
