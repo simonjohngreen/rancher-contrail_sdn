@@ -1,4 +1,4 @@
-##Rancher Kubernetes using Contrail SDN as the CNI Deployed into AWS 
+**Rancher Kubernetes using Contrail SDN as the CNI Deployed into AWS 
 
 This automated stack creates:
 				A bastion host for controlled access
@@ -61,8 +61,8 @@ example:
 
 The contrail cli is also assessible if you run the add-nat.sh towards the master node, then https://[bastion public ip]:8143
 
-#Other hints
-#You can override almost anything in the root stack parameters.
-#when you are finished just delete the root stack in the aws console, or run ./delete.sh
-#if you want to deploy into an existing VPC you can use just the rancher-nodes-rke1.stack and specify the id*** parameters manualy. 
-#I've also included rke2 scripts and stacks. These are a work in progress, however contrail does come up and pods get an overlay ip address.
+**Other hints
+You can override almost anything in the root stack parameters.
+when you are finished just delete the root stack in the aws console, or run ./delete.sh
+if you want to deploy into an existing VPC you can use just the rancher-nodes-rke1.stack and specify the id*** parameters manualy. 
+I've also included rke2 scripts and stacks. These are a work in progress, however contrail does come up and pods get an overlay ip address.
