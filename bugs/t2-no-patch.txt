@@ -1,0 +1,688 @@
+{
+  "status": {
+    "id": "72cc34a09dd190ab36c641db9161321a8e4e911940b2e5884609ecc8c06044b9",
+    "metadata": {
+      "attempt": 3,
+      "name": "contrail-agent-nodemgr"
+    },
+    "state": "CONTAINER_EXITED",
+    "createdAt": "2021-01-13T22:03:27.637135161Z",
+    "startedAt": "2021-01-13T22:03:27.739020159Z",
+    "finishedAt": "2021-01-13T22:03:28.713321666Z",
+    "exitCode": 1,
+    "image": {
+      "image": "hub.juniper.net/contrail/contrail-nodemgr:2011.138"
+    },
+    "imageRef": "hub.juniper.net/contrail/contrail-nodemgr@sha256:efafb129ad1e56379ead6df0de360bbbe96ddf875fd91049e24b728f542130c1",
+    "reason": "Error",
+    "message": "",
+    "labels": {
+      "io.kubernetes.container.name": "contrail-agent-nodemgr",
+      "io.kubernetes.pod.name": "contrail-agent-hssth",
+      "io.kubernetes.pod.namespace": "kube-system",
+      "io.kubernetes.pod.uid": "e40d60c6-ab7e-4371-92a1-f364997b15eb"
+    },
+    "annotations": {
+      "io.kubernetes.container.hash": "bb707c51",
+      "io.kubernetes.container.restartCount": "3",
+      "io.kubernetes.container.terminationMessagePath": "/dev/termination-log",
+      "io.kubernetes.container.terminationMessagePolicy": "File",
+      "io.kubernetes.pod.terminationGracePeriod": "30"
+    },
+    "mounts": [
+      {
+        "containerPath": "/var/log/contrail",
+        "hostPath": "/var/log/contrail/agent",
+        "propagation": "PROPAGATION_PRIVATE",
+        "readonly": false,
+        "selinuxRelabel": false
+      },
+      {
+        "containerPath": "/mnt",
+        "hostPath": "/var/run",
+        "propagation": "PROPAGATION_PRIVATE",
+        "readonly": false,
+        "selinuxRelabel": false
+      },
+      {
+        "containerPath": "/etc/hosts",
+        "hostPath": "/var/lib/kubelet/pods/e40d60c6-ab7e-4371-92a1-f364997b15eb/etc-hosts",
+        "propagation": "PROPAGATION_PRIVATE",
+        "readonly": false,
+        "selinuxRelabel": false
+      },
+      {
+        "containerPath": "/dev/termination-log",
+        "hostPath": "/var/lib/kubelet/pods/e40d60c6-ab7e-4371-92a1-f364997b15eb/containers/contrail-agent-nodemgr/29978a9b",
+        "propagation": "PROPAGATION_PRIVATE",
+        "readonly": false,
+        "selinuxRelabel": false
+      }
+    ],
+    "logPath": "/var/log/pods/kube-system_contrail-agent-hssth_e40d60c6-ab7e-4371-92a1-f364997b15eb/contrail-agent-nodemgr/3.log"
+  },
+  "info": {
+    "sandboxID": "17b9a9c1ca8c082cf3bbf4f89d469cb194f3f28f0e884ddcb8bb1493e14a569b",
+    "pid": 0,
+    "removing": false,
+    "snapshotKey": "72cc34a09dd190ab36c641db9161321a8e4e911940b2e5884609ecc8c06044b9",
+    "snapshotter": "overlayfs",
+    "runtimeType": "io.containerd.runc.v2",
+    "runtimeOptions": null,
+    "config": {
+      "metadata": {
+        "name": "contrail-agent-nodemgr",
+        "attempt": 3
+      },
+      "image": {
+        "image": "sha256:77faf792ed4e3d440bb712304fe6c93a77fb183acc2ffcc4269fa1773ff3c87d"
+      },
+      "envs": [
+        {
+          "key": "CLOUD_ORCHESTRATOR",
+          "value": "kubernetes"
+        },
+        {
+          "key": "VROUTER_MTU",
+          "value": "8940"
+        },
+        {
+          "key": "ANALYTICS_API_VIP"
+        },
+        {
+          "key": "WEBUI_NODES",
+          "value": "100.72.100.11"
+        },
+        {
+          "key": "DOCKER_HOST",
+          "value": "unix://mnt/docker.sock"
+        },
+        {
+          "key": "CONTROLLER_NODES",
+          "value": "100.72.100.11"
+        },
+        {
+          "key": "ANALYTICS_SNMP_NODES",
+          "value": "100.72.100.11"
+        },
+        {
+          "key": "AUTH_MODE",
+          "value": "noauth"
+        },
+        {
+          "key": "METADATA_PROXY_SECRET",
+          "value": "contrail"
+        },
+        {
+          "key": "CONTROL_NODES",
+          "value": "100.72.100.11"
+        },
+        {
+          "key": "ANALYTICSDB_ENABLE",
+          "value": "true"
+        },
+        {
+          "key": "CONFIGDB_NODES",
+          "value": "100.72.100.11"
+        },
+        {
+          "key": "ENABLE_4BYTE_AS",
+          "value": "true"
+        },
+        {
+          "key": "BGP_ASN",
+          "value": "63000"
+        },
+        {
+          "key": "ANALYTICSDB_NODES",
+          "value": "100.72.100.11"
+        },
+        {
+          "key": "RABBITMQ_NODE_PORT",
+          "value": "5673"
+        },
+        {
+          "key": "KUBERNETES_IP_FABRIC_FORWARDING",
+          "value": "false"
+        },
+        {
+          "key": "ANALYTICS_ALARM_NODES",
+          "value": "100.72.100.11"
+        },
+        {
+          "key": "ANALYTICS_SNMP_ENABLE",
+          "value": "true"
+        },
+        {
+          "key": "NODE_TYPE",
+          "value": "vrouter"
+        },
+        {
+          "key": "CONFIG_API_VIP"
+        },
+        {
+          "key": "AAA_MODE",
+          "value": "no-auth"
+        },
+        {
+          "key": "ANALYTICS_NODES",
+          "value": "100.72.100.11"
+        },
+        {
+          "key": "RABBITMQ_NODES",
+          "value": "100.72.100.11"
+        },
+        {
+          "key": "WEBUI_VIP"
+        },
+        {
+          "key": "ANALYTICS_ALARM_ENABLE",
+          "value": "true"
+        },
+        {
+          "key": "CONFIG_NODES",
+          "value": "100.72.100.11"
+        },
+        {
+          "key": "LOG_LEVEL",
+          "value": "SYS_DEBUG"
+        },
+        {
+          "key": "RKE2_COREDNS_RKE2_COREDNS_PORT_53_UDP_PORT",
+          "value": "53"
+        },
+        {
+          "key": "KUBERNETES_SERVICE_HOST",
+          "value": "10.43.0.1"
+        },
+        {
+          "key": "KUBERNETES_PORT_443_TCP",
+          "value": "tcp://10.43.0.1:443"
+        },
+        {
+          "key": "KUBERNETES_PORT_443_TCP_PORT",
+          "value": "443"
+        },
+        {
+          "key": "RKE2_COREDNS_RKE2_COREDNS_PORT",
+          "value": "udp://10.43.0.10:53"
+        },
+        {
+          "key": "RKE2_COREDNS_RKE2_COREDNS_PORT_53_TCP_ADDR",
+          "value": "10.43.0.10"
+        },
+        {
+          "key": "RKE2_COREDNS_RKE2_COREDNS_SERVICE_PORT",
+          "value": "53"
+        },
+        {
+          "key": "RKE2_COREDNS_RKE2_COREDNS_SERVICE_PORT_TCP_53",
+          "value": "53"
+        },
+        {
+          "key": "RKE2_COREDNS_RKE2_COREDNS_PORT_53_UDP_ADDR",
+          "value": "10.43.0.10"
+        },
+        {
+          "key": "RKE2_COREDNS_RKE2_COREDNS_PORT_53_TCP_PORT",
+          "value": "53"
+        },
+        {
+          "key": "RKE2_COREDNS_RKE2_COREDNS_PORT_53_TCP_PROTO",
+          "value": "tcp"
+        },
+        {
+          "key": "KUBERNETES_SERVICE_PORT",
+          "value": "443"
+        },
+        {
+          "key": "KUBERNETES_SERVICE_PORT_HTTPS",
+          "value": "443"
+        },
+        {
+          "key": "KUBERNETES_PORT_443_TCP_PROTO",
+          "value": "tcp"
+        },
+        {
+          "key": "KUBERNETES_PORT_443_TCP_ADDR",
+          "value": "10.43.0.1"
+        },
+        {
+          "key": "RKE2_COREDNS_RKE2_COREDNS_PORT_53_UDP_PROTO",
+          "value": "udp"
+        },
+        {
+          "key": "RKE2_COREDNS_RKE2_COREDNS_PORT_53_TCP",
+          "value": "tcp://10.43.0.10:53"
+        },
+        {
+          "key": "KUBERNETES_PORT",
+          "value": "tcp://10.43.0.1:443"
+        },
+        {
+          "key": "RKE2_COREDNS_RKE2_COREDNS_SERVICE_HOST",
+          "value": "10.43.0.10"
+        },
+        {
+          "key": "RKE2_COREDNS_RKE2_COREDNS_SERVICE_PORT_UDP_53",
+          "value": "53"
+        },
+        {
+          "key": "RKE2_COREDNS_RKE2_COREDNS_PORT_53_UDP",
+          "value": "udp://10.43.0.10:53"
+        }
+      ],
+      "mounts": [
+        {
+          "container_path": "/var/log/contrail",
+          "host_path": "/var/log/contrail/agent"
+        },
+        {
+          "container_path": "/mnt",
+          "host_path": "/var/run"
+        },
+        {
+          "container_path": "/etc/hosts",
+          "host_path": "/var/lib/kubelet/pods/e40d60c6-ab7e-4371-92a1-f364997b15eb/etc-hosts"
+        },
+        {
+          "container_path": "/dev/termination-log",
+          "host_path": "/var/lib/kubelet/pods/e40d60c6-ab7e-4371-92a1-f364997b15eb/containers/contrail-agent-nodemgr/29978a9b"
+        }
+      ],
+      "labels": {
+        "io.kubernetes.container.name": "contrail-agent-nodemgr",
+        "io.kubernetes.pod.name": "contrail-agent-hssth",
+        "io.kubernetes.pod.namespace": "kube-system",
+        "io.kubernetes.pod.uid": "e40d60c6-ab7e-4371-92a1-f364997b15eb"
+      },
+      "annotations": {
+        "io.kubernetes.container.hash": "bb707c51",
+        "io.kubernetes.container.restartCount": "3",
+        "io.kubernetes.container.terminationMessagePath": "/dev/termination-log",
+        "io.kubernetes.container.terminationMessagePolicy": "File",
+        "io.kubernetes.pod.terminationGracePeriod": "30"
+      },
+      "log_path": "contrail-agent-nodemgr/3.log",
+      "linux": {
+        "resources": {
+          "cpu_period": 100000,
+          "cpu_shares": 2,
+          "oom_score_adj": 1000
+        },
+        "security_context": {
+          "namespace_options": {
+            "network": 2,
+            "pid": 1
+          },
+          "run_as_user": {},
+          "masked_paths": [
+            "/proc/acpi",
+            "/proc/kcore",
+            "/proc/keys",
+            "/proc/latency_stats",
+            "/proc/timer_list",
+            "/proc/timer_stats",
+            "/proc/sched_debug",
+            "/proc/scsi",
+            "/sys/firmware"
+          ],
+          "readonly_paths": [
+            "/proc/asound",
+            "/proc/bus",
+            "/proc/fs",
+            "/proc/irq",
+            "/proc/sys",
+            "/proc/sysrq-trigger"
+          ]
+        }
+      }
+    },
+    "runtimeSpec": {
+      "ociVersion": "1.0.1-dev",
+      "process": {
+        "user": {
+          "uid": 0,
+          "gid": 0
+        },
+        "args": [
+          "/entrypoint.sh",
+          "/bin/sh",
+          "-c",
+          "/usr/bin/contrail-nodemgr --nodetype=${NODEMGR_TYPE}"
+        ],
+        "env": [
+          "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "HOSTNAME=ip-100-72-100-11",
+          "container=oci",
+          "CONTRAIL_GID=1999",
+          "CONTRAIL_UID=1999",
+          "CONTRAIL_USER=contrail",
+          "CONTRAIL_VERSION=ubi-queens-2011-138",
+          "PS1=\\033[1m($(printenv NODE_TYPE)-$(printenv SERVICE_NAME))\\033[m\\017[$(id -un)@$(hostname -s) $(pwd)]$ ",
+          "VENDOR_DOMAIN=net.juniper.contrail",
+          "SERVICE_NAME=nodemgr",
+          "CLOUD_ORCHESTRATOR=kubernetes",
+          "VROUTER_MTU=8940",
+          "ANALYTICS_API_VIP=",
+          "WEBUI_NODES=100.72.100.11",
+          "DOCKER_HOST=unix://mnt/docker.sock",
+          "CONTROLLER_NODES=100.72.100.11",
+          "ANALYTICS_SNMP_NODES=100.72.100.11",
+          "AUTH_MODE=noauth",
+          "METADATA_PROXY_SECRET=contrail",
+          "CONTROL_NODES=100.72.100.11",
+          "ANALYTICSDB_ENABLE=true",
+          "CONFIGDB_NODES=100.72.100.11",
+          "ENABLE_4BYTE_AS=true",
+          "BGP_ASN=63000",
+          "ANALYTICSDB_NODES=100.72.100.11",
+          "RABBITMQ_NODE_PORT=5673",
+          "KUBERNETES_IP_FABRIC_FORWARDING=false",
+          "ANALYTICS_ALARM_NODES=100.72.100.11",
+          "ANALYTICS_SNMP_ENABLE=true",
+          "NODE_TYPE=vrouter",
+          "CONFIG_API_VIP=",
+          "AAA_MODE=no-auth",
+          "ANALYTICS_NODES=100.72.100.11",
+          "RABBITMQ_NODES=100.72.100.11",
+          "WEBUI_VIP=",
+          "ANALYTICS_ALARM_ENABLE=true",
+          "CONFIG_NODES=100.72.100.11",
+          "LOG_LEVEL=SYS_DEBUG",
+          "RKE2_COREDNS_RKE2_COREDNS_PORT_53_UDP_PORT=53",
+          "KUBERNETES_SERVICE_HOST=10.43.0.1",
+          "KUBERNETES_PORT_443_TCP=tcp://10.43.0.1:443",
+          "KUBERNETES_PORT_443_TCP_PORT=443",
+          "RKE2_COREDNS_RKE2_COREDNS_PORT=udp://10.43.0.10:53",
+          "RKE2_COREDNS_RKE2_COREDNS_PORT_53_TCP_ADDR=10.43.0.10",
+          "RKE2_COREDNS_RKE2_COREDNS_SERVICE_PORT=53",
+          "RKE2_COREDNS_RKE2_COREDNS_SERVICE_PORT_TCP_53=53",
+          "RKE2_COREDNS_RKE2_COREDNS_PORT_53_UDP_ADDR=10.43.0.10",
+          "RKE2_COREDNS_RKE2_COREDNS_PORT_53_TCP_PORT=53",
+          "RKE2_COREDNS_RKE2_COREDNS_PORT_53_TCP_PROTO=tcp",
+          "KUBERNETES_SERVICE_PORT=443",
+          "KUBERNETES_SERVICE_PORT_HTTPS=443",
+          "KUBERNETES_PORT_443_TCP_PROTO=tcp",
+          "KUBERNETES_PORT_443_TCP_ADDR=10.43.0.1",
+          "RKE2_COREDNS_RKE2_COREDNS_PORT_53_UDP_PROTO=udp",
+          "RKE2_COREDNS_RKE2_COREDNS_PORT_53_TCP=tcp://10.43.0.10:53",
+          "KUBERNETES_PORT=tcp://10.43.0.1:443",
+          "RKE2_COREDNS_RKE2_COREDNS_SERVICE_HOST=10.43.0.10",
+          "RKE2_COREDNS_RKE2_COREDNS_SERVICE_PORT_UDP_53=53",
+          "RKE2_COREDNS_RKE2_COREDNS_PORT_53_UDP=udp://10.43.0.10:53"
+        ],
+        "cwd": "/",
+        "capabilities": {
+          "bounding": [
+            "CAP_CHOWN",
+            "CAP_DAC_OVERRIDE",
+            "CAP_FSETID",
+            "CAP_FOWNER",
+            "CAP_MKNOD",
+            "CAP_NET_RAW",
+            "CAP_SETGID",
+            "CAP_SETUID",
+            "CAP_SETFCAP",
+            "CAP_SETPCAP",
+            "CAP_NET_BIND_SERVICE",
+            "CAP_SYS_CHROOT",
+            "CAP_KILL",
+            "CAP_AUDIT_WRITE"
+          ],
+          "effective": [
+            "CAP_CHOWN",
+            "CAP_DAC_OVERRIDE",
+            "CAP_FSETID",
+            "CAP_FOWNER",
+            "CAP_MKNOD",
+            "CAP_NET_RAW",
+            "CAP_SETGID",
+            "CAP_SETUID",
+            "CAP_SETFCAP",
+            "CAP_SETPCAP",
+            "CAP_NET_BIND_SERVICE",
+            "CAP_SYS_CHROOT",
+            "CAP_KILL",
+            "CAP_AUDIT_WRITE"
+          ],
+          "inheritable": [
+            "CAP_CHOWN",
+            "CAP_DAC_OVERRIDE",
+            "CAP_FSETID",
+            "CAP_FOWNER",
+            "CAP_MKNOD",
+            "CAP_NET_RAW",
+            "CAP_SETGID",
+            "CAP_SETUID",
+            "CAP_SETFCAP",
+            "CAP_SETPCAP",
+            "CAP_NET_BIND_SERVICE",
+            "CAP_SYS_CHROOT",
+            "CAP_KILL",
+            "CAP_AUDIT_WRITE"
+          ],
+          "permitted": [
+            "CAP_CHOWN",
+            "CAP_DAC_OVERRIDE",
+            "CAP_FSETID",
+            "CAP_FOWNER",
+            "CAP_MKNOD",
+            "CAP_NET_RAW",
+            "CAP_SETGID",
+            "CAP_SETUID",
+            "CAP_SETFCAP",
+            "CAP_SETPCAP",
+            "CAP_NET_BIND_SERVICE",
+            "CAP_SYS_CHROOT",
+            "CAP_KILL",
+            "CAP_AUDIT_WRITE"
+          ]
+        },
+        "apparmorProfile": "cri-containerd.apparmor.d",
+        "oomScoreAdj": 1000
+      },
+      "root": {
+        "path": "rootfs"
+      },
+      "mounts": [
+        {
+          "destination": "/proc",
+          "type": "proc",
+          "source": "proc",
+          "options": [
+            "nosuid",
+            "noexec",
+            "nodev"
+          ]
+        },
+        {
+          "destination": "/dev",
+          "type": "tmpfs",
+          "source": "tmpfs",
+          "options": [
+            "nosuid",
+            "strictatime",
+            "mode=755",
+            "size=65536k"
+          ]
+        },
+        {
+          "destination": "/dev/pts",
+          "type": "devpts",
+          "source": "devpts",
+          "options": [
+            "nosuid",
+            "noexec",
+            "newinstance",
+            "ptmxmode=0666",
+            "mode=0620",
+            "gid=5"
+          ]
+        },
+        {
+          "destination": "/dev/mqueue",
+          "type": "mqueue",
+          "source": "mqueue",
+          "options": [
+            "nosuid",
+            "noexec",
+            "nodev"
+          ]
+        },
+        {
+          "destination": "/sys",
+          "type": "sysfs",
+          "source": "sysfs",
+          "options": [
+            "nosuid",
+            "noexec",
+            "nodev",
+            "ro"
+          ]
+        },
+        {
+          "destination": "/sys/fs/cgroup",
+          "type": "cgroup",
+          "source": "cgroup",
+          "options": [
+            "nosuid",
+            "noexec",
+            "nodev",
+            "relatime",
+            "ro"
+          ]
+        },
+        {
+          "destination": "/mnt",
+          "type": "bind",
+          "source": "/run",
+          "options": [
+            "rbind",
+            "rprivate",
+            "rw"
+          ]
+        },
+        {
+          "destination": "/dev/shm",
+          "type": "bind",
+          "source": "/run/k3s/containerd/io.containerd.grpc.v1.cri/sandboxes/17b9a9c1ca8c082cf3bbf4f89d469cb194f3f28f0e884ddcb8bb1493e14a569b/shm",
+          "options": [
+            "rbind",
+            "rprivate",
+            "rw"
+          ]
+        },
+        {
+          "destination": "/etc/hosts",
+          "type": "bind",
+          "source": "/var/lib/kubelet/pods/e40d60c6-ab7e-4371-92a1-f364997b15eb/etc-hosts",
+          "options": [
+            "rbind",
+            "rprivate",
+            "rw"
+          ]
+        },
+        {
+          "destination": "/dev/termination-log",
+          "type": "bind",
+          "source": "/var/lib/kubelet/pods/e40d60c6-ab7e-4371-92a1-f364997b15eb/containers/contrail-agent-nodemgr/29978a9b",
+          "options": [
+            "rbind",
+            "rprivate",
+            "rw"
+          ]
+        },
+        {
+          "destination": "/etc/hostname",
+          "type": "bind",
+          "source": "/var/lib/rancher/rke2/agent/containerd/io.containerd.grpc.v1.cri/sandboxes/17b9a9c1ca8c082cf3bbf4f89d469cb194f3f28f0e884ddcb8bb1493e14a569b/hostname",
+          "options": [
+            "rbind",
+            "rprivate",
+            "rw"
+          ]
+        },
+        {
+          "destination": "/etc/resolv.conf",
+          "type": "bind",
+          "source": "/var/lib/rancher/rke2/agent/containerd/io.containerd.grpc.v1.cri/sandboxes/17b9a9c1ca8c082cf3bbf4f89d469cb194f3f28f0e884ddcb8bb1493e14a569b/resolv.conf",
+          "options": [
+            "rbind",
+            "rprivate",
+            "rw"
+          ]
+        },
+        {
+          "destination": "/var/log/contrail",
+          "type": "bind",
+          "source": "/var/log/contrail/agent",
+          "options": [
+            "rbind",
+            "rprivate",
+            "rw"
+          ]
+        }
+      ],
+      "annotations": {
+        "io.kubernetes.cri.container-type": "container",
+        "io.kubernetes.cri.sandbox-id": "17b9a9c1ca8c082cf3bbf4f89d469cb194f3f28f0e884ddcb8bb1493e14a569b"
+      },
+      "linux": {
+        "resources": {
+          "devices": [
+            {
+              "allow": false,
+              "access": "rwm"
+            }
+          ],
+          "memory": {},
+          "cpu": {
+            "shares": 2,
+            "period": 100000
+          }
+        },
+        "cgroupsPath": "/kubepods/besteffort/pode40d60c6-ab7e-4371-92a1-f364997b15eb/72cc34a09dd190ab36c641db9161321a8e4e911940b2e5884609ecc8c06044b9",
+        "namespaces": [
+          {
+            "type": "pid"
+          },
+          {
+            "type": "ipc",
+            "path": "/proc/6180/ns/ipc"
+          },
+          {
+            "type": "uts",
+            "path": "/proc/6180/ns/uts"
+          },
+          {
+            "type": "mount"
+          },
+          {
+            "type": "network",
+            "path": "/proc/6180/ns/net"
+          }
+        ],
+        "maskedPaths": [
+          "/proc/acpi",
+          "/proc/kcore",
+          "/proc/keys",
+          "/proc/latency_stats",
+          "/proc/timer_list",
+          "/proc/timer_stats",
+          "/proc/sched_debug",
+          "/proc/scsi",
+          "/sys/firmware"
+        ],
+        "readonlyPaths": [
+          "/proc/asound",
+          "/proc/bus",
+          "/proc/fs",
+          "/proc/irq",
+          "/proc/sys",
+          "/proc/sysrq-trigger"
+        ]
+      }
+    }
+  }
+}

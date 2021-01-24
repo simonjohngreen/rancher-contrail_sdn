@@ -1,0 +1,66 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kubernetes.io/psp: global-unrestricted-psp
+  generateName: contrail-status-
+  labels:
+    app: contrail-status
+    pod-template-generation: "1"
+  managedFields:
+  - apiVersion: v1
+  name: contrail-status-bxwbp
+  namespace: kube-system
+spec:
+  securityContext:
+    privileged: true
+  containers:
+  - env:
+    image: hub.juniper.net/contrail/contrail-status:2011.138
+    command: ["/bin/sh"]
+    args: ["-c", "while true; do /root/contrail-status.py --debug; sleep 120;done"]
+    imagePullPolicy: IfNotPresent
+    name: contrail-status
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /etc/localtime 
+      name: localtime 
+      readOnly: true
+    - mountPath: /sys/fs/cgroup 
+      name: cgroup 
+    - mountPath: /etc/hosts 
+      name: hosts 
+      readOnly: true
+    - mountPath: /run/containerd 
+      name: containerd 
+  enableServiceLinks: true
+  hostNetwork: true
+  imagePullSecrets:
+  - name: contrail-registry
+  priority: 0
+  restartPolicy: Never 
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  volumes:
+  - hostPath:
+      path: /etc/localtime 
+      type: ""
+    name: localtime 
+  - hostPath:
+      path: /sys/fs/cgroup 
+      type: ""
+    name: cgroup 
+  - hostPath:
+      path: /etc/hosts 
+      type: ""
+    name: hosts 
+  - hostPath:
+      path: /run/k3s/containerd 
+      type: ""
+    name: containerd 
+

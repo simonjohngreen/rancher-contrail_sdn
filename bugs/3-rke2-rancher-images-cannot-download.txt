@@ -1,0 +1,595 @@
+kubectl get pods -A -o wide
+NAMESPACE       NAME                                                  READY   STATUS             RESTARTS   AGE     IP              NODE               NOMINATED NODE   READINESS GATES
+cattle-system   rancher-lqsrw                                         0/1     ImagePullBackOff   0          5m30s   10.32.0.248     ip-100-72-100-11   <none>           <none>
+kube-system     config-zookeeper-vjz4p                                1/1     Running            0          9m54s   100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     contrail-agent-c56w7                                  3/3     Running            0          9m52s   100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     contrail-analytics-5jmqj                              4/4     Running            0          9m54s   100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     contrail-analytics-alarm-vfsn7                        4/4     Running            0          9m54s   100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     contrail-analytics-snmp-prkql                         4/4     Running            0          9m54s   100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     contrail-analyticsdb-ncvxt                            4/4     Running            0          9m54s   100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     contrail-configdb-2wvvq                               3/3     Running            0          9m54s   100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     contrail-controller-config-nfzfm                      6/6     Running            0          9m53s   100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     contrail-controller-control-kznpt                     5/5     Running            0          9m54s   100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     contrail-controller-webui-mm9j2                       2/2     Running            0          9m53s   100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     contrail-kube-manager-dzjdm                           1/1     Running            0          9m52s   100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     etcd-ip-100-72-100-11                                 1/1     Running            0          10m     100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     helm-install-rancher-zjgcd                            0/1     Completed          0          11m     10.32.0.251     ip-100-72-100-11   <none>           <none>
+kube-system     helm-install-rke2-ingress-nginx-rpwlh                 0/1     Completed          0          11m     10.32.0.252     ip-100-72-100-11   <none>           <none>
+kube-system     helm-install-rke2-kube-proxy-lgxn6                    0/1     Completed          0          11m     100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     helm-install-rke2-metrics-server-xxlm7                0/1     Completed          0          11m     10.32.0.250     ip-100-72-100-11   <none>           <none>
+kube-system     kube-apiserver-ip-100-72-100-11                       1/1     Running            0          10m     100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     kube-controller-manager-ip-100-72-100-11              1/1     Running            0          11m     100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     kube-proxy-qc57q                                      1/1     Running            0          11m     100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     kube-scheduler-ip-100-72-100-11                       1/1     Running            0          11m     100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     rabbitmq-nsg94                                        1/1     Running            0          9m53s   100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     redis-dnlf7                                           1/1     Running            0          9m53s   100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     rke2-coredns-rke2-coredns-6f7676fdf7-l2cl7            0/1     ImagePullBackOff   0          7m9s    10.32.0.249     ip-100-72-100-11   <none>           <none>
+kube-system     rke2-ingress-nginx-controller-d4989f458-9fwpp         0/1     ImagePullBackOff   0          5m30s   100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     rke2-ingress-nginx-default-backend-65f75d6664-wngr5   0/1     ImagePullBackOff   0          5m30s   10.32.0.246     ip-100-72-100-11   <none>           <none>
+kube-system     rke2-metrics-server-5d8c549c9f-4dprt                  0/1     ImagePullBackOff   0          5m30s   10.32.0.247     ip-100-72-100-11   <none>           <none>
+
+prob dns..
+
+Events:
+  Type     Reason     Age                     From               Message
+  ----     ------     ----                    ----               -------
+  Normal   Scheduled  8m42s                   default-scheduler  Successfully assigned cattle-system/rancher-lqsrw to ip-100-72-100-11
+  Normal   Pulling    7m11s (x4 over 8m31s)   kubelet            Pulling image "rancher/rancher:v2.5.4-rc6"
+  Warning  Failed     7m11s (x4 over 8m31s)   kubelet            Failed to pull image "rancher/rancher:v2.5.4-rc6": rpc error: code = Unknown desc = failed to pull and unpack image "docker.io/rancher/rancher:v2.5.4-rc6": failed to resolve reference "docker.io/rancher/rancher:v2.5.4-rc6": failed to do request: Head https://registry-1.docker.io/v2/rancher/rancher/manifests/v2.5.4-rc6: dial tcp: lookup registry-1.docker.io on 127.0.0.53:53: server misbehaving
+  Warning  Failed     7m11s (x4 over 8m31s)   kubelet            Error: ErrImagePull
+  Warning  Failed     6m47s (x7 over 8m31s)   kubelet            Error: ImagePullBackOff
+  Normal   BackOff    3m28s (x21 over 8m31s)  kubelet            Back-off pulling image "rancher/rancher:v2.5.4-rc6"
+
+
+during the build..
+
+# See man:systemd-resolved.service(8) for details about the supported modes of
+# operation for /etc/resolv.conf.
+
+nameserver 127.0.0.53
+options edns0
+search eu-west-1.compute.internal
+root@ip-100-72-100-11:~# ping www.google.com
+PING www.google.com (209.85.202.106) 56(84) bytes of data.
+64 bytes from dg-in-f106.1e100.net (209.85.202.106): icmp_seq=1 ttl=101 time=1.23 ms
+64 bytes from dg-in-f106.1e100.net (209.85.202.106): icmp_seq=2 ttl=101 time=1.02 ms
+ç64 bytes from dg-in-f106.1e100.net (209.85.202.106): icmp_seq=3 ttl=101 time=0.986 ms
+64 bytes from dg-in-f106.1e100.net (209.85.202.106): icmp_seq=4 ttl=101 time=0.988 ms
+^C
+--- www.google.com ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3003ms
+rtt min/avg/max/mdev = 0.986/1.058/1.233/0.107 ms
+
+lsof -i :53
+COMMAND   PID            USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+systemd-r 702 systemd-resolve   12u  IPv4  14935      0t0  UDP localhost:domain 
+systemd-r 702 systemd-resolve   13u  IPv4  14936      0t0  TCP localhost:domain (LISTEN)
+
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: ens5: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 9001 qdisc mq state UP group default qlen 1000
+    link/ether 0a:23:85:d5:41:f7 brd ff:ff:ff:ff:ff:ff
+    inet 100.72.100.11/24 brd 100.72.100.255 scope global dynamic ens5
+       valid_lft 3324sec preferred_lft 3324sec
+    inet6 fe80::823:85ff:fed5:41f7/64 scope link 
+       valid_lft forever preferred_lft forever
+
+
+still works at thisd point
+
+kubectl get pods -A
+
+NAMESPACE     NAME                                         READY   STATUS      RESTARTS   AGE
+kube-system   config-zookeeper-k794r                       1/1     Running     0          3m31s
+kube-system   contrail-agent-5s6t5                         0/3     Init:1/3    0          3m30s
+kube-system   contrail-analytics-alarm-tvvfw               4/4     Running     0          3m31s
+kube-system   contrail-analytics-snmp-87mqg                4/4     Running     1          3m31s
+kube-system   contrail-analytics-zznnf                     4/4     Running     0          3m31s
+kube-system   contrail-analyticsdb-kf42v                   4/4     Running     0          3m31s
+kube-system   contrail-configdb-v87ms                      3/3     Running     0          3m31s
+kube-system   contrail-controller-config-dnqw8             6/6     Running     0          3m31s
+kube-system   contrail-controller-control-z956q            5/5     Running     0          3m31s
+kube-system   contrail-controller-webui-mfdht              2/2     Running     0          3m31s
+kube-system   contrail-kube-manager-rcdkq                  1/1     Running     0          3m30s
+kube-system   etcd-ip-100-72-100-11                        1/1     Running     0          4m45s
+kube-system   helm-install-rancher-2dpzr                   0/1     Pending     0          5m16s
+kube-system   helm-install-rke2-ingress-nginx-9b5lp        0/1     Pending     0          5m16s
+kube-system   helm-install-rke2-kube-proxy-848jv           0/1     Completed   0          5m16s
+kube-system   helm-install-rke2-metrics-server-lzrtd       0/1     Pending     0          5m16s
+kube-system   kube-apiserver-ip-100-72-100-11              1/1     Running     0          4m19s
+kube-system   kube-controller-manager-ip-100-72-100-11     1/1     Running     0          4m2s
+kube-system   kube-proxy-wkfqx                             1/1     Running     0          5m1s
+kube-system   kube-scheduler-ip-100-72-100-11              1/1     Running     0          4m27s
+kube-system   rabbitmq-wzf8q                               1/1     Running     0          3m31s
+kube-system   redis-lqr7p                                  1/1     Running     0          3m31s
+kube-system   rke2-coredns-rke2-coredns-6f7676fdf7-nw2lr   0/1     Pending     0          26s
+
+
+
+
+
+still works at thisd point
+
+kubectl get pods -A
+
+NAMESPACE     NAME                                         READY   STATUS      RESTARTS   AGE
+kube-system   config-zookeeper-k794r                       1/1     Running     0          3m31s
+kube-system   contrail-agent-5s6t5                         0/3     Init:1/3    0          3m30s
+kube-system   contrail-analytics-alarm-tvvfw               4/4     Running     0          3m31s
+kube-system   contrail-analytics-snmp-87mqg                4/4     Running     1          3m31s
+kube-system   contrail-analytics-zznnf                     4/4     Running     0          3m31s
+kube-system   contrail-analyticsdb-kf42v                   4/4     Running     0          3m31s
+kube-system   contrail-configdb-v87ms                      3/3     Running     0          3m31s
+kube-system   contrail-controller-config-dnqw8             6/6     Running     0          3m31s
+kube-system   contrail-controller-control-z956q            5/5     Running     0          3m31s
+kube-system   contrail-controller-webui-mfdht              2/2     Running     0          3m31s
+kube-system   contrail-kube-manager-rcdkq                  1/1     Running     0          3m30s
+kube-system   etcd-ip-100-72-100-11                        1/1     Running     0          4m45s
+kube-system   helm-install-rancher-2dpzr                   0/1     Pending     0          5m16s
+kube-system   helm-install-rke2-ingress-nginx-9b5lp        0/1     Pending     0          5m16s
+kube-system   helm-install-rke2-kube-proxy-848jv           0/1     Completed   0          5m16s
+kube-system   helm-install-rke2-metrics-server-lzrtd       0/1     Pending     0          5m16s
+kube-system   kube-apiserver-ip-100-72-100-11              1/1     Running     0          4m19s
+kube-system   kube-controller-manager-ip-100-72-100-11     1/1     Running     0          4m2s
+kube-system   kube-proxy-wkfqx                             1/1     Running     0          5m1s
+kube-system   kube-scheduler-ip-100-72-100-11              1/1     Running     0          4m27s
+kube-system   rabbitmq-wzf8q                               1/1     Running     0          3m31s
+kube-system   redis-lqr7p                                  1/1     Running     0          3m31s
+kube-system   rke2-coredns-rke2-coredns-6f7676fdf7-nw2lr   0/1     Pending     0          26s
+
+
+dns still works at this point
+
+kubectl get pods -A
+
+NAMESPACE     NAME                                         READY   STATUS      RESTARTS   AGE
+kube-system   config-zookeeper-k794r                       1/1     Running     0          3m31s
+kube-system   contrail-agent-5s6t5                         0/3     Init:1/3    0          3m30s
+kube-system   contrail-analytics-alarm-tvvfw               4/4     Running     0          3m31s
+kube-system   contrail-analytics-snmp-87mqg                4/4     Running     1          3m31s
+kube-system   contrail-analytics-zznnf                     4/4     Running     0          3m31s
+kube-system   contrail-analyticsdb-kf42v                   4/4     Running     0          3m31s
+kube-system   contrail-configdb-v87ms                      3/3     Running     0          3m31s
+kube-system   contrail-controller-config-dnqw8             6/6     Running     0          3m31s
+kube-system   contrail-controller-control-z956q            5/5     Running     0          3m31s
+kube-system   contrail-controller-webui-mfdht              2/2     Running     0          3m31s
+kube-system   contrail-kube-manager-rcdkq                  1/1     Running     0          3m30s
+kube-system   etcd-ip-100-72-100-11                        1/1     Running     0          4m45s
+kube-system   helm-install-rancher-2dpzr                   0/1     Pending     0          5m16s
+kube-system   helm-install-rke2-ingress-nginx-9b5lp        0/1     Pending     0          5m16s
+kube-system   helm-install-rke2-kube-proxy-848jv           0/1     Completed   0          5m16s
+kube-system   helm-install-rke2-metrics-server-lzrtd       0/1     Pending     0          5m16s
+kube-system   kube-apiserver-ip-100-72-100-11              1/1     Running     0          4m19s
+kube-system   kube-controller-manager-ip-100-72-100-11     1/1     Running     0          4m2s
+kube-system   kube-proxy-wkfqx                             1/1     Running     0          5m1s
+kube-system   kube-scheduler-ip-100-72-100-11              1/1     Running     0          4m27s
+kube-system   rabbitmq-wzf8q                               1/1     Running     0          3m31s
+kube-system   redis-lqr7p                                  1/1     Running     0          3m31s
+kube-system   rke2-coredns-rke2-coredns-6f7676fdf7-nw2lr   0/1     Pending     0          26s
+
+
+then fails as the vrouter comes up and rke2 gets deployed
+
+kubectl get pods -A -o wide
+NAMESPACE       NAME                                                  READY   STATUS              RESTARTS   AGE     IP              NODE               NOMINATED NODE   READINESS GATES
+cattle-system   rancher-c9mmz                                         0/1     ImagePullBackOff    0          16s     10.32.0.248     ip-100-72-100-11   <none>           <none>
+kube-system     config-zookeeper-k794r                                1/1     Running             0          4m27s   100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     contrail-agent-5s6t5                                  3/3     Running             0          4m26s   100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     contrail-analytics-alarm-tvvfw                        4/4     Running             0          4m27s   100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     contrail-analytics-snmp-87mqg                         4/4     Running             1          4m27s   100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     contrail-analytics-zznnf                              4/4     Running             0          4m27s   100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     contrail-analyticsdb-kf42v                            4/4     Running             0          4m27s   100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     contrail-configdb-v87ms                               3/3     Running             0          4m27s   100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     contrail-controller-config-dnqw8                      6/6     Running             0          4m27s   100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     contrail-controller-control-z956q                     5/5     Running             0          4m27s   100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     contrail-controller-webui-mfdht                       2/2     Running             0          4m27s   100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     contrail-kube-manager-rcdkq                           1/1     Running             0          4m26s   100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     etcd-ip-100-72-100-11                                 1/1     Running             0          5m41s   100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     helm-install-rancher-2dpzr                            0/1     Completed           0          6m12s   10.32.0.251     ip-100-72-100-11   <none>           <none>
+kube-system     helm-install-rke2-ingress-nginx-9b5lp                 0/1     Completed           0          6m12s   10.32.0.250     ip-100-72-100-11   <none>           <none>
+kube-system     helm-install-rke2-kube-proxy-848jv                    0/1     Completed           0          6m12s   100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     helm-install-rke2-metrics-server-lzrtd                0/1     Completed           0          6m12s   10.32.0.249     ip-100-72-100-11   <none>           <none>
+kube-system     kube-apiserver-ip-100-72-100-11                       1/1     Running             0          5m15s   100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     kube-controller-manager-ip-100-72-100-11              1/1     Running             0          4m58s   100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     kube-proxy-wkfqx                                      1/1     Running             0          5m57s   100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     kube-scheduler-ip-100-72-100-11                       1/1     Running             0          5m23s   100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     rabbitmq-wzf8q                                        1/1     Running             0          4m27s   100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     redis-lqr7p                                           1/1     Running             0          4m27s   100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     rke2-coredns-rke2-coredns-6f7676fdf7-nw2lr            0/1     ContainerCreating   0          82s     <none>          ip-100-72-100-11   <none>           <none>
+kube-system     rke2-ingress-nginx-controller-d4989f458-xb7sm         0/1     ImagePullBackOff    0          16s     100.72.100.11   ip-100-72-100-11   <none>           <none>
+kube-system     rke2-ingress-nginx-default-backend-65f75d6664-7t8lb   0/1     ImagePullBackOff    0          16s     10.32.0.246     ip-100-72-100-11   <none>           <none>
+kube-system     rke2-metrics-server-5d8c549c9f-xr45s                  0/1     ImagePullBackOff    0          16s     10.32.0.247     ip-100-72-100-11   <none>           <none>
+
+ping www.google.com
+ping: www.google.com: Temporary failure in name resolution
+
+lsof: no pwd entry for UID 1999
+lsof: no pwd entry for UID 1999
+lsof: no pwd entry for UID 1999
+COMMAND     PID            USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+systemd-r   702 systemd-resolve   12u  IPv4  14935      0t0  UDP localhost:domain 
+systemd-r   702 systemd-resolve   13u  IPv4  14936      0t0  TCP localhost:domain (LISTEN)
+lsof: no pwd entry for UID 1999
+contrail- 17072            1999   21u  IPv6  60053      0t0  TCP *:domain (LISTEN)
+lsof: no pwd entry for UID 1999
+contrail- 17072            1999   22u  IPv4  60057      0t0  TCP localhost:domain (LISTEN)
+lsof: no pwd entry for UID 1999
+contrail- 17072            1999   23u  IPv4  70012      0t0  TCP ip-100-72-100-11:domain (LISTEN)
+lsof: no pwd entry for UID 1999
+contrail- 17072            1999  512u  IPv6  60050      0t0  UDP *:domain 
+lsof: no pwd entry for UID 1999
+contrail- 17072            1999  513u  IPv6  60050      0t0  UDP *:domain 
+lsof: no pwd entry for UID 1999
+contrail- 17072            1999  514u  IPv6  60050      0t0  UDP *:domain 
+lsof: no pwd entry for UID 1999
+
+
+# This file is managed by man:systemd-resolved(8). Do not edit.
+#
+# This is a dynamic resolv.conf file for connecting local clients to the
+# internal DNS stub resolver of systemd-resolved. This file lists all
+# configured search domains.
+#
+# Run "systemd-resolve --status" to see details about the uplink DNS servers
+# currently in use.
+#
+# Third party programs must not access this file directly, but only through the
+# symlink at /etc/resolv.conf. To manage man:resolv.conf(5) in a different way,
+# replace this symlink by a static file or a different symlink.
+#
+# See man:systemd-resolved.service(8) for details about the supported modes of
+# operation for /etc/resolv.conf.
+
+nameserver 127.0.0.53
+options edns0
+search eu-west-1.compute.internal
+
+lsmod | grep vrouter
+vrouter  909312  2
+
+ping 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=109 time=1.69 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=109 time=0.933 ms
+
+
+systemd-resolve --status
+Global
+          DNSSEC NTA: 10.in-addr.arpa
+                      16.172.in-addr.arpa
+                      168.192.in-addr.arpa
+                      17.172.in-addr.arpa
+                      18.172.in-addr.arpa
+                      19.172.in-addr.arpa
+                      20.172.in-addr.arpa
+                      21.172.in-addr.arpa
+                      22.172.in-addr.arpa
+                      23.172.in-addr.arpa
+                      24.172.in-addr.arpa
+                      25.172.in-addr.arpa
+                      26.172.in-addr.arpa
+                      27.172.in-addr.arpa
+                      28.172.in-addr.arpa
+                      29.172.in-addr.arpa
+                      30.172.in-addr.arpa
+                      31.172.in-addr.arpa
+                      corp
+                      d.f.ip6.arpa
+                      home
+                      internal
+                      intranet
+                      lan
+                      local
+                      private
+                      test
+
+Link 26 (tapeth0-2c459d)
+      Current Scopes: none
+       LLMNR setting: yes
+MulticastDNS setting: no
+      DNSSEC setting: no
+    DNSSEC supported: no
+
+Link 24 (tapeth0-0a6512)
+      Current Scopes: none
+       LLMNR setting: yes
+MulticastDNS setting: no
+      DNSSEC setting: no
+    DNSSEC supported: no
+
+Link 22 (tapeth0-0db67f)
+      Current Scopes: none
+       LLMNR setting: yes
+MulticastDNS setting: no
+      DNSSEC setting: no
+    DNSSEC supported: no
+
+Link 20 (tapeth0-538dc4)
+      Current Scopes: none
+       LLMNR setting: yes
+MulticastDNS setting: no
+      DNSSEC setting: no
+    DNSSEC supported: no
+
+Link 10 (pkt0)
+      Current Scopes: none
+       LLMNR setting: yes
+MulticastDNS setting: no
+      DNSSEC setting: no
+    DNSSEC supported: no
+
+Link 9 (decrypt0)
+      Current Scopes: none
+       LLMNR setting: yes
+MulticastDNS setting: no
+      DNSSEC setting: no
+    DNSSEC supported: no
+
+Link 8 (ip_vti0)
+      Current Scopes: none
+       LLMNR setting: yes
+MulticastDNS setting: no
+      DNSSEC setting: no
+    DNSSEC supported: no
+
+Link 7 (crypt0)
+      Current Scopes: none
+       LLMNR setting: yes
+MulticastDNS setting: no
+      DNSSEC setting: no
+    DNSSEC supported: no
+
+Link 6 (vhost0)
+      Current Scopes: none
+       LLMNR setting: yes
+MulticastDNS setting: no
+      DNSSEC setting: no
+    DNSSEC supported: no
+
+Link 5 (pkt2)
+      Current Scopes: none
+       LLMNR setting: yes
+MulticastDNS setting: no
+      DNSSEC setting: no
+    DNSSEC supported: no
+
+Link 4 (pkt3)
+      Current Scopes: none
+       LLMNR setting: yes
+MulticastDNS setting: no
+      DNSSEC setting: no
+    DNSSEC supported: no
+
+Link 3 (pkt1)
+      Current Scopes: none
+       LLMNR setting: yes
+MulticastDNS setting: no
+      DNSSEC setting: no
+    DNSSEC supported: no
+
+Link 2 (ens5)
+      Current Scopes: none
+       LLMNR setting: yes
+MulticastDNS setting: no
+      DNSSEC setting: no
+    DNSSEC supported: no
+         DNS Servers: 100.72.100.2
+          DNS Domain: eu-west-1.compute.internal
+
+ping 100.72.100.2
+fails (but might always faill)
+
+add the server manually
+nameserver 100.72.100.2 
+nameserver 127.0.0.53
+options edns0
+search eu-west-1.compute.internal
+
+
+ping www.google.com
+PING www.google.com (74.125.193.147) 56(84) bytes of data.
+64 bytes from ig-in-f147.1e100.net (74.125.193.147): icmp_seq=1 ttl=100 time=2.77 ms
+64 bytes from ig-in-f147.1e100.net (74.125.193.147): icmp_seq=2 ttl=100 time=1.38 ms
+64 bytes from ig-in-f147.1e100.net (74.125.193.147): icmp_seq=3 ttl=100 time=1.38 ms
+
+so the dns and routing is find. systemd-resollv is not..
+
+systemd restart systemd-resolve
+Excess arguments.
+root@ip-100-72-100-11:~# systemd
+Trying to run as user instance, but $XDG_RUNTIME_DIR is not set.
+root@ip-100-72-100-11:~# systemctl restart systemd-resolve
+Failed to restart systemd-resolve.service: Unit systemd-resolve.service not found.
+root@ip-100-72-100-11:~# systemctl | grep resolv
+systemd-resolved.service                                                                                                                                          loaded active     running         Network Name Resolution                                                                                                         
+root@ip-100-72-100-11:~# systemctl status systemd-resolved.service
+● systemd-resolved.service - Network Name Resolution
+   Loaded: loaded (/lib/systemd/system/systemd-resolved.service; enabled; vendor preset: enabled)
+   Active: active (running) since Thu 2021-01-14 09:11:32 UTC; 18min ago
+     Docs: man:systemd-resolved.service(8)
+           https://www.freedesktop.org/wiki/Software/systemd/resolved
+           https://www.freedesktop.org/wiki/Software/systemd/writing-network-configuration-managers
+           https://www.freedesktop.org/wiki/Software/systemd/writing-resolver-clients
+ Main PID: 702 (systemd-resolve)
+   Status: "Processing requests..."
+    Tasks: 1 (limit: 4915)
+   CGroup: /system.slice/systemd-resolved.service
+           └─702 /lib/systemd/systemd-resolved
+
+Jan 14 09:11:32 ip-100-72-100-11 systemd[1]: Starting Network Name Resolution...
+Jan 14 09:11:32 ip-100-72-100-11 systemd-resolved[702]: Positive Trust Anchors:
+Jan 14 09:11:32 ip-100-72-100-11 systemd-resolved[702]: . IN DS 19036 8 2 49aac11d7b6f6446702e54a1607371607a1a41855200fd2ce1cdde32f24e8fb5
+Jan 14 09:11:32 ip-100-72-100-11 systemd-resolved[702]: . IN DS 20326 8 2 e06d44b80b8f1d39a95c0b0d7c65d08458e880409bbc683457104237c7f8ec8d
+Jan 14 09:11:32 ip-100-72-100-11 systemd-resolved[702]: Negative trust anchors: 10.in-addr.arpa 16.172.in-addr.arpa 17.172.in-addr.arpa 18.172.in-addr.arpa 19.172.in-addr.arpa 20.172.i
+Jan 14 09:11:32 ip-100-72-100-11 systemd-resolved[702]: Using system hostname 'ip-100-72-100-11'.
+Jan 14 09:11:32 ip-100-72-100-11 systemd[1]: Started Network Name Resolution.
+Jan 14 09:11:36 ip-100-72-100-11 systemd-resolved[702]: Using degraded feature set (UDP) for DNS server 100.72.100.2.
+
+systemctl restart systemd-resolved.service
+root@ip-100-72-100-11:~# ping www.google.com
+ping: www.google.com: Temporary failure in name resolution
+
+
+i think the problem is 
+
+systemd-resolve --status
+Link 2 (ens5)
+      Current Scopes: none
+       LLMNR setting: yes
+MulticastDNS setting: no
+      DNSSEC setting: no
+    DNSSEC supported: no
+         DNS Servers: 100.72.100.2
+          DNS Domain: eu-west-1.compute.internal
+
+this needs to move to vhiost0
+
+/etc/network/interfaces
+# ifupdown has been replaced by netplan(5) on this system.  See
+# /etc/netplan for current configuration.
+# To re-enable ifupdown on this system, you can run:
+#    sudo apt install ifupdown
+
+/etc/netplan/50-cloud-init.yaml 
+# This file is generated from information provided by the datasource.  Changes
+# to it will not persist across an instance reboot.  To disable cloud-init's
+# network configuration capabilities, write a file
+# /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg with the following:
+# network: {config: disabled}
+network:
+    ethernets:
+        ens5:
+            dhcp4: true
+            dhcp6: false
+            match:
+                macaddress: 0a:23:85:d5:41:f7
+            set-name: ens5
+    version: 2
+
+
+try:
+echo "network: {config: disabled}" > /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg
+sed -i 's/ens5/vhost0/' /etc/netplan/50-cloud-init.yaml 
+systemctl restart systemd-resolved.service
+
+Link 4 (ip_vti0)
+      Current Scopes: none
+       LLMNR setting: yes
+MulticastDNS setting: no
+      DNSSEC setting: no
+    DNSSEC supported: no
+
+Link 3 (crypt0)
+      Current Scopes: none
+       LLMNR setting: yes
+MulticastDNS setting: no
+      DNSSEC setting: no
+    DNSSEC supported: no
+
+Link 2 (vhost0)
+      Current Scopes: DNS
+       LLMNR setting: yes
+MulticastDNS setting: no
+      DNSSEC setting: no
+    DNSSEC supported: no
+         DNS Servers: 100.72.100.2
+          DNS Domain: eu-west-1.compute.internal
+
+reboot
+nslookup www.google.com
+Server:		127.0.0.53
+Address:	127.0.0.53#53
+
+Non-authoritative answer:
+Name:	www.google.com
+Address: 74.125.193.105
+Name:	www.google.com
+
+but  vrouter didn't come back..
+try just a straight depoy and reboot, no changes, does it work ? 
+
+it came back so its my change... 
+
+try just the dns change..
+cp /etc/netplan/50-cloud-init.yaml /root
+sed -i 's/ens5/vhost0/' /etc/netplan/50-cloud-init.yaml 
+reboot
+fails.. so its the change to /etc/netplan/50-cloud-init.yaml
+put it back
+sed -i 's/vhost0/ens5/' /etc/netplan/50-cloud-init.yaml
+reboot
+yes vrouter is fine, but no dns..
+so the  /etc/netplan/50-cloud-init.yaml is causing trouble..
+
+try this
+network:
+    ethernets:
+        ens5:
+            dhcp4: true
+            dhcp6: false
+            match:
+                macaddress: 0a:24:3c:00:80:3d
+            set-name: ens5
+        vhost0:
+            dhcp4: true
+            dhcp6: false
+            match:
+                macaddress: 0a:24:3c:00:80:3d
+            set-name: vhost0
+    version: 2
+
+no that didn't work..
+ip addr show ens5 has disappeared..
+put it back.
+ try seperate files..
+
+nope I've lost ens5 again.
+ip addr show
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: vhost0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 9001 qdisc mq state UP group default qlen 1000
+    link/ether 0a:24:3c:00:80:3d brd ff:ff:ff:ff:ff:ff
+    inet 100.72.100.11/24 brd 100.72.100.255 scope global dynamic vhost0
+       valid_lft 3526sec preferred_lft 3526sec
+    inet6 fe80::824:3cff:fe00:803d/64 scope link 
+       valid_lft forever preferred_lft forever
+
+editing /etc/resol.conf to point to the correct dns xxxx worked, but got put back.
+
+try to disable resolved..
+
+export DNSIP=$(systemd-resolve --status | grep "DNS Servers" | awk 'NF>1{print $NF}')
+cp /etc/resolv.conf /tmp
+systemctl disable systemd-resolved
+systemctl stop systemd-resolved
+rm /etc/resolv.conf
+cp /tmp/resolv.conf /etc
+sed -i "s/nameserver 127.0.0.53/nameserver $DNSIP/" /etc/resolv.conf 
+netplan apply
+
+test a reboot.. pass 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

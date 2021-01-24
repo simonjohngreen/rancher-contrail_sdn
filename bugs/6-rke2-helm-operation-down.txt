@@ -1,0 +1,26 @@
+kubectl logs -f helm-operation-p92gw -n cattle-system -c helm
+Waiting for Kubernetes API to be available
+Waiting for Kubernetes API to be available
+Waiting for Kubernetes API to be available
+Waiting for Kubernetes API to be available
+Waiting for Kubernetes API to be available
+Waiting for Kubernetes API to be available
+Waiting for Kubernetes API to be available
+Waiting for Kubernetes API to be available
+Waiting for Kubernetes API to be available
+Waiting for Kubernetes API to be available
+Waiting for Kubernetes API to be available
+Waiting for Kubernetes API to be available
+Waiting for Kubernetes API to be available
+Waiting for Kubernetes API to be available
+Waiting for Kubernetes API to be available
+Waiting for Kubernetes API to be available
+Waiting for Kubernetes API to be available
+Waiting for Kubernetes API to be available
+Waiting for Kubernetes API to be available
+Waiting for Kubernetes API to be available
+Timeout waiting for kubernetes
+
+
+
+

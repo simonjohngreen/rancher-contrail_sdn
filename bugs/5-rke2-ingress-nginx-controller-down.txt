@@ -1,0 +1,25 @@
+ube-system     rke2-ingress-nginx-controller-d4989f458-hffkl         0/1     CrashLoopBackOff   68         5h26m
+
+ kubectl logs rke2-ingress-nginx-controller-d4989f458-hffkl -n kube-system 
+-------------------------------------------------------------------------------
+NGINX Ingress controller
+  Release:       0.30.0
+  Build:         git-fbdaf0775
+  Repository:    https://github.com/rancher/ingress-nginx.git
+  nginx version: nginx/1.17.8
+
+-------------------------------------------------------------------------------
+
+I0115 18:35:54.338474       7 flags.go:215] Watching for Ingress class: nginx
+F0115 18:35:54.338886       7 main.go:65] port 8181 is already in use. Please check the flag --default-server-port
+
+
+lsof -i :8181
+lsof: no pwd entry for UID 1999
+COMMAND     PID     USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+lsof: no pwd entry for UID 1999
+contrail- 11533     1999    7u  IPv4  49706      0t0  TCP localhost:8181 (LISTEN)
+
+ps -ef | grep 11533
+1999     11533  6158  0 13:10 ?        00:00:09 /usr/bin/python /usr/bin/contrail-analytics-api -c /etc/contrail/contrail-analytics-api.conf -c /etc/contrail/contrail-keystone-auth.conf
+

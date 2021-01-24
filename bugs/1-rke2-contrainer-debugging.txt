@@ -1,0 +1,98 @@
+
+how to debug containers directly on RKE2 built by rancherD, as nothing works out of the box..
+
+in /var/lib/rancher/rke2/bin
+containerd  containerd-shim  containerd-shim-runc-v1  containerd-shim-runc-v2  crictl  ctr  kubectl  kubelet  runc  socat
+
+./crictl pods
+FATA[0002] failed to connect: failed to connect, make sure you are running as root and the runtime has been started: context deadline exceeded 
+
+./ctr containers list
+ctr: failed to dial "/run/containerd/containerd.sock": context deadline exceeded
+
+dpkg -l | grep Containers
+ii  liblxc-common                    3.0.3-0ubuntu1~18.04.1              amd64        Linux Containers userspace tools (common tools)
+ii  liblxc1                          3.0.3-0ubuntu1~18.04.1              amd64        Linux Containers userspace tools (library)
+
+
+are we running containerd
+
+ps -ef | grep containerd
+root      2365  2322  5 09:18 ?        00:05:13 containerd -c /var/lib/rancher/rke2/agent/etc/containerd/config.toml -a /run/k3s/containerd/containerd.sock --state /run/k3s/containerd --root /var/lib/rancher/rke2/agent/containerd
+root      2445  2322  4 09:19 ?        00:03:52 kubelet --address=0.0.0.0 --alsologtostderr=false --anonymous-auth=false --authentication-token-webhook=true --authorization-mode=Webhook --cgroup-driver=cgroupfs --client-ca-file=/var/lib/rancher/rke2/agent/client-ca.crt --cluster-dns=10.43.0.10 --cluster-domain=cluster.local --container-runtime-endpoint=/run/k3s/containerd/containerd.sock --container-runtime=remote --containerd=/run/k3s/containerd/containerd.sock --eviction-hard=imagefs.available<5%,nodefs.available<5% --eviction-minimum-reclaim=imagefs.available=10%,nodefs.available=10% --fail-swap-on=false --healthz-bind-address=127.0.0.1 --hostname-override=ip-100-72-100-11 --kubeconfig=/var/lib/rancher/rke2/agent/kubelet.kubeconfig --kubelet-cgroups=/systemd/system.slice --log-file-max-size=50 --log-file=/var/lib/rancher/rke2/agent/logs/kubelet.log --logtostderr=false --node-labels= --pod-manifest-path=/var/lib/rancher/rke2/agent/pod-manifests --read-only-port=0 --resolv-conf=/run/systemd/resolve/resolv.conf --runtime-cgroups=/systemd/system.slice --serialize-image-pulls=false --stderrthreshold=FATAL --tls-cert-file=/var/lib/rancher/rke2/agent/serving-kubelet.crt --tls-private-key-file=/var/lib/rancher/rke2/agent/serving-kubelet.key
+root      2552     1  0 09:19 ?        00:00:00 /var/lib/rancher/rke2/data/v2.5.4-rc6-4a119afef5c7/bin/containerd-shim-runc-v2 -namespace k8s.io -id 6270342cb73c7487b215f2343dbfd1fb6b9652abff53ddcdfa70d0a28eda1d95 -address /run/k3s/containerd/containerd.sock
+
+systemctl | grep containerd
+run-k3s-containerd-io.containerd.grpc.v1.cri-sandboxes-010454b1a2c6ca4d48d977ff417ee24c507044b867dcea5226c7067f76323595-shm.mount                               loaded active     mounted         /run/k3s/containerd/io.containerd.grpc.v1.cri/sandboxes/010454b1a2c6ca4d48d977ff417ee24c507044b867dcea5226c7067f76323595/shm    
+run-k3s-containerd-io.containerd.grpc.v1.cri-sandboxes-01f625cf2632749f083460ba96f17570c0d550dc9369d8fce9c5e0494b83e30d-shm.mount                               loaded active     mounted         /run/k3s/containerd/io.containerd.grpc.v1.cri/sandboxes/01f625cf2632749f083460ba96f17570c0d550dc9369d8fce9c5e0494b83e30d/shm    
+
+Rancher lists 2.5.4 as using.
+CRI: embedded Containerd
+cri was introdiuced into k8s in 1.15
+so lets look at the kubernetes cri config..
+
+its kubellet that picks a container runtime
+
+ps -ef | grep kubelet
+root      2445  2322  4 09:19 ?        00:06:19 kubelet --address=0.0.0.0 --alsologtostderr=false --anonymous-auth=false --authentication-token-webhook=true --authorization-mode=Webhook --cgroup-driver=cgroupfs --client-ca-file=/var/lib/rancher/rke2/agent/client-ca.crt --cluster-dns=10.43.0.10 --cluster-domain=cluster.local --container-runtime-endpoint=/run/k3s/containerd/containerd.sock --container-runtime=remote --containerd=/run/k3s/containerd/containerd.sock --eviction-hard=imagefs.available<5%,nodefs.available<5% --eviction-minimum-reclaim=imagefs.available=10%,nodefs.available=10% --fail-swap-on=false --healthz-bind-address=127.0.0.1 --hostname-override=ip-100-72-100-11 --kubeconfig=/var/lib/rancher/rke2/agent/kubelet.kubeconfig --kubelet-cgroups=/systemd/system.slice --log-file-max-size=50 --log-file=/var/lib/rancher/rke2/agent/logs/kubelet.log --logtostderr=false --node-labels= --pod-manifest-path=/var/lib/rancher/rke2/agent/pod-manifests --read-only-port=0 --resolv-conf=/run/systemd/resolve/resolv.conf --runtime-cgroups=/systemd/system.slice --serialize-image-pulls=false --stderrthreshold=FATAL --tls-cert-file=/var/lib/rancher/rke2/agent/serving-kubelet.crt --tls-private-key-file=/var/lib/rancher/rke2/agent/serving-kubelet.key
+
+..
+--container-runtime-endpoint=/run/k3s/containerd/containerd.sock 
+--container-runtime=remote 
+--containerd=/run/k3s/containerd/containerd.sock
+
+
+adding this environment variabel fixes crictl
+export CONTAINER_RUNTIME_ENDPOINT=unix:///run/k3s/containerd/containerd.sock
+
+crictl ps
+CONTAINER           IMAGE               CREATED             STATE               NAME                                     ATTEMPT             POD ID
+4bcb371f1c6b8       f858494fecbd2       5 hours ago         Running             contrail-controller-config-provisioner   0                   109f357ab80a1
+2a1310ded1f39       a2b646ba6ed30       5 hours ago         Running             contrail-controller-config-svcmonitor    0                   109f357ab80a1
+b82db6185a3aa       28fae63f0d8aa       5 hours ago         Running             contrail-controller-config-schema        0                   109f357ab80a1
+f80c595018020       d269f1eacc1f8       5 hours ago         Running             contrail-controller-config-devicemgr     0                   109f357ab80a1
+de3dde199043f       f858494fecbd2       5 hours ago         Running             contrail-controller-provisioner          0                   5c73fc8de9be0
+60ac2aef54111       907fb6a7accf3       5 hours ago         Running             contrail-controller-control-named        0                   5c73fc8de9be0
+f1f2fac5805bf       ceb899634dcdb       5 hours ago         Running             contrail-analytics-query-engine          0                   8fc46b7424b5c
+11f70ff457bde       f858494fecbd2       5 hours ago         Running             contrail-analytics-alarm-provisioner     0                   19f762c60372e
+017dff9d320d1       f858494fecbd2       5 hours ago         Running             contrail-analytics-snmp-provisioner      0                   f4b96e2edc50e
+7c45695b7a9d6       f858494fecbd2       5 hours ago         Running             contrail-analytics-provisioner           0                   d829bdca6b4b8
+d3f2bd6bc8258       28ddcdeb552a0       5 hours ago         Running             contrail-analytics-alarm-gen             0                   19f762c60372e
+df8ce0ade91c1       0de638eadaddd       5 hours ago         Running             contrail-analytics-snmp-topology         0                   f4b96e2edc50e
+4122e76522c8f       df253584e812c       5 hours ago         Running             contrail-analytics-collector             0                   d829bdca6b4b8
+377e1fdf666fb       03684c3bb27cb       5 hours ago         Running             contrail-controller-control-dns          0                   5c73fc8de9be0
+4546c78e1be86       c6a8e1ee75984       5 hours ago         Running             contrail-analyticsdb                     0                   8fc46b7424b5c
+d6a720421eafa       f858494fecbd2       5 hours ago         Running             contrail-analyticsdb-provisioner         0                   8fc46b7424b5c
+62a57d295a1ce       1c976405b4c1b       5 hours ago         Running             contrail-controller-webui-web            0                   9b42fa699ec07
+6a296bf76463c       f858494fecbd2       5 hours ago         Running             contrail-config-database-provisioner     0                   2ac1e949307a3
+8c6e3d8b815b3       e31d7a1d5c2c5       5 hours ago         Running             contrail-kube-manager                    0                   01f625cf26327
+6b2b7b1d5e312       98a37c64418e4       5 hours ago         Running             contrail-controller-control              0                   5c73fc8de9be0
+3cf5ce650e32c       65e9e05c7217b       5 hours ago         Running             contrail-analytics-snmp-collector        0                   f4b96e2edc50e
+055e5d9415b29       97b0304701e12       5 hours ago         Running             contrail-controller-config-api           0                   109f357ab80a1
+62ddb7c2ae82e       dcbc38056c3b1       5 hours ago         Running             kafka                                    0                   19f762c60372e
+4c5e36d4ef2f5       171aa62e7c583       5 hours ago         Running             contrail-controller-webui-job            0                   9b42fa699ec07
+a09e2b1984565       f65357dc987ef       5 hours ago         Running             contrail-analytics-api                   0                   d829bdca6b4b8
+bab7cbc8101a1       17ec351355a0c       5 hours ago         Running             config-zookeeper                         0                   7d28a7465c845
+9436259581d14       58dc5c2b9ec5b       5 hours ago         Running             redis                                    0                   600a94b1810f8
+030ca08361a80       c6a8e1ee75984       5 hours ago         Running             contrail-configdb                        0                   2ac1e949307a3
+7ae3d4aad40f9       1db3d06e68c8d       5 hours ago         Running             rabbitmq                                 0                   897346e86c6ad
+3db70f02c1701       a753b59f71c47       5 hours ago         Running             kube-proxy                               0                   19e977866b00f
+50a5a40086ca3       f22490339c311       5 hours ago         Running             kube-controller-manager                  0                   29a1ccb8ba139
+fe6709605b18a       f22490339c311       5 hours ago         Running             kube-scheduler                           0                   bb5c808d89f15
+7017595878df1       f22490339c311       5 hours ago         Running             kube-apiserver                           0                   c20526a17db01
+c7556fed2fd80       f24e72a2007f8       5 hours ago         Running             etcd                                     0                   6270342cb73c7
+
+make the changes perminent for all users...
+
+echo "export KUBECONFIG=/etc/rancher/rke2/rke2.yaml" >> /root/.bashrc
+echo "export PATH=$PATH:/var/lib/rancher/rke2/bin" >> /root/.bashrc
+echo "export KUBECONFIG=/etc/rancher/rke2/rke2.yaml" >> /home/ubuntu/.bashrc
+echo "export PATH=$PATH:/var/lib/rancher/rke2/bin" >> /home/ubuntu/.bashrc
+echo "runtime-endpoint: unix:///run/k3s/containerd/containerd.sock" > /etc/crictl.yaml
+
+
+
+
+
+
+

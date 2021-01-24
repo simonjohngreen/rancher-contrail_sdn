@@ -1,0 +1,24 @@
+Events:
+  Type     Reason       Age                    From                                                     Message
+  ----     ------       ----                   ----                                                     -------
+  Normal   Scheduled    79m                    default-scheduler                                        Successfully assigned contrail/vroutermasternodes-vrouter-daemonset-2x59x to ip-10-186-219-83.eu-central-1.compute.internal
+  Warning  FailedMount  79m                    kubelet, ip-10-186-219-83.eu-central-1.compute.internal  MountVolume.SetUp failed for volume "vroutermasternodes-secret-certificates" : failed to sync secret cache: timed out waiting for the condition
+  Warning  FailedMount  79m                    kubelet, ip-10-186-219-83.eu-central-1.compute.internal  MountVolume.SetUp failed for volume "vroutermasternodes-vrouter-volume" : failed to sync configmap cache: timed out waiting for the condition
+  Normal   Pulling      79m                    kubelet, ip-10-186-219-83.eu-central-1.compute.internal  Pulling image "hub.juniper.net/contrail-nightly/common-docker-third-party/contrail/python:3.8.2-alpine"
+  Normal   Pulled       79m                    kubelet, ip-10-186-219-83.eu-central-1.compute.internal  Successfully pulled image "hub.juniper.net/contrail-nightly/common-docker-third-party/contrail/python:3.8.2-alpine"
+  Normal   Created      79m                    kubelet, ip-10-186-219-83.eu-central-1.compute.internal  Created container init
+  Normal   Started      79m                    kubelet, ip-10-186-219-83.eu-central-1.compute.internal  Started container init
+  Normal   Pulling      79m                    kubelet, ip-10-186-219-83.eu-central-1.compute.internal  Pulling image "hub.juniper.net/contrail-nightly/contrail-node-init:2011.138"
+  Normal   Pulled       79m                    kubelet, ip-10-186-219-83.eu-central-1.compute.internal  Successfully pulled image "hub.juniper.net/contrail-nightly/contrail-node-init:2011.138"
+  Normal   Created      79m                    kubelet, ip-10-186-219-83.eu-central-1.compute.internal  Created container nodeinit
+  Normal   Started      79m                    kubelet, ip-10-186-219-83.eu-central-1.compute.internal  Started container nodeinit
+  Normal   Pulling      79m                    kubelet, ip-10-186-219-83.eu-central-1.compute.internal  Pulling image "hub.juniper.net/contrail-nightly/contrail-vrouter-kernel-init:2011.138"
+  Normal   Pulled       79m                    kubelet, ip-10-186-219-83.eu-central-1.compute.internal  Successfully pulled image "hub.juniper.net/contrail-nightly/contrail-vrouter-kernel-init:2011.138"
+  Normal   Created      79m                    kubelet, ip-10-186-219-83.eu-central-1.compute.internal  Created container vrouterkernelinit
+  Normal   Started      79m                    kubelet, ip-10-186-219-83.eu-central-1.compute.internal  Started container vrouterkernelinit
+  Normal   Created      79m (x2 over 79m)      kubelet, ip-10-186-219-83.eu-central-1.compute.internal  Created container vrouteragent
+  Normal   Started      79m (x2 over 79m)      kubelet, ip-10-186-219-83.eu-central-1.compute.internal  Started container vrouteragent
+  Normal   Pulling      78m (x3 over 79m)      kubelet, ip-10-186-219-83.eu-central-1.compute.internal  Pulling image "hub.juniper.net/contrail-nightly/contrail-vrouter-agent:2011.138"
+  Normal   Pulled       78m (x3 over 79m)      kubelet, ip-10-186-219-83.eu-central-1.compute.internal  Successfully pulled image "hub.juniper.net/contrail-nightly/contrail-vrouter-agent:2011.138"
+  Warning  BackOff      4m40s (x339 over 79m)  kubelet, ip-10-186-219-83.eu-central-1.compute.internal  Back-off restarting failed container
+Satinders-MacBook-Pro:~ satinder.singh$

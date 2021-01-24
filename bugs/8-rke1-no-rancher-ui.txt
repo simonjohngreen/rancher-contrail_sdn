@@ -1,0 +1,71 @@
+kubectl get ingress -A
+Warning: extensions/v1beta1 Ingress is deprecated in v1.14+, unavailable in v1.22+; use networking.k8s.io/v1 Ingress
+NAMESPACE       NAME      CLASS    HOSTS                                         ADDRESS         PORTS     AGE
+cattle-system   rancher   <none>   ip-100-72-100-11.eu-west-1.compute.internal   100.72.100.11   80, 443   19m
+
+    http:
+      paths:
+      - backend:
+          serviceName: rancher
+          servicePort: 80
+        pathType: ImplementationSpecific
+
+kubectl edit ep rancher -n cattle-system
+
+  - ip: 10.42.0.10
+  - ip: 10.42.0.11
+  - ip: 10.42.0.9
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+  - name: https-internal
+    port: 444
+    protocol: TCP
+
+cattle-system             rancher-85c9cf85ff-6dgfk                   1/1     Running     0          29m   10.42.0.11      100.72.100.11   <none>           <none>
+cattle-system             rancher-85c9cf85ff-d4s5p                   1/1     Running     0          29m   10.42.0.10      100.72.100.11   <none>           <none>
+cattle-system             rancher-85c9cf85ff-z5pzt                   1/1     Running     0          29m   10.42.0.9       100.72.100.11   <none>           <none>
+
+wget --no-check-certificate https://100.72.100.11
+--2021-01-16 20:45:52--  https://100.72.100.11/
+Connecting to 100.72.100.11:443... connected.
+WARNING: cannot verify 100.72.100.11's certificate, issued by ‘CN=Kubernetes Ingress Controller Fake Certificate,O=Acme Co’:
+  Unable to locally verify the issuer's authority.
+    WARNING: certificate common name ‘Kubernetes Ingress Controller Fake Certificate’ doesn't match requested host name ‘100.72.100.11’.
+HTTP request sent, awaiting response... 404 Not Found
+2021-01-16 20:45:52 ERROR 404: Not Found.
+
+wget --no-check-certificate https://
+
+curl http://10.42.0.10
+<a href="https://10.42.0.10/">Found</a>.
+
+
+curl -k https://10.42.0.10
+{"type":"collection","links":{"self":"https://10.42.0.10/"},"actions":{},"pagination":{"limit":1000,"total":4},"sort":{"order":"asc","reverse":"https://10.42.0.10/?order=desc"},"resourceType":"apiRoot","data":[{"apiVersion":{"group":"meta.cattle.io","path":"/meta","version":"v1"},"baseType":"apiRoot","links":{"apiRoots":"https://10.42.0.10/meta/apiroots","root":"https://10.42.0.10/meta","schemas":"https://10.42.0.10/meta/schemas","self":"https://10.42.0.10/meta","subscribe":"https://10.42.0.10/meta/subscribe"},"type":"apiRoot"},{"apiVersion":{"group":"management.cattle.io","path":"/v3","version":"v3"},"baseType":"apiRoot","links":{"authConfigs":"https://10.42.0.10/v3/authconfigs","catalogs":"https://10.42.0.10/v3/catalogs","cisBenchmarkVersions":"https://10.42.0.10/v3/cisbenchmarkversions","cisConfigs":"https://10.42.0.10/v3/cisconfigs","cloudCredentials":"https://10.42.0.10/v3/cloudcredentials","clusterAlertGroups":"https://10.42.0.10/v3/clusteralertgroups","clusterAlertRules":"https://10.42.0.10/v3/clusteralertrules","clusterAlerts":"https://10.42.0.10/v3/clusteralerts","clusterCatalogs":"https://10.42.0.10/v3/clustercatalogs","clusterLoggings":"https://10.42.0.10/v3/clusterloggings","clusterMonitorGraphs":"https://10.42.0.10/v3/clustermonitorgraphs","clusterRegistrationTokens":"https://10.42.0.10/v3/clusterregistrationtokens","clusterRoleTemplateBindings":"https://10.42.0.10/v3/clusterroletemplatebindings","clusterScans":"https://10.42.0.10/v3/clusterscans","clusterTemplateRevisions":"https://10.42.0.10/v3/clustertemplaterevisions","clusterTemplates":"https://10.42.0.10/v3/clustertemplates","clusters":"https://10.42.0.10/v3/clusters","composeConfigs":"https://10.42.0.10/v3/composeconfigs","dynamicSchemas":"https://10.42.0.10/v3/dynamicschemas","etcdBackups":"https://10.42.0.10/v3/etcdbackups","features":"https://10.42.0.10/v3/features","fleetWorkspaces":"https://10.42.0.10/v3/fleetworkspaces","globalD
+
+curl -k https://ip-100-72-100-11.eu-west-1.compute.internal
+{"type":"collection","links":{"self":"https://ip-100-72-100-11.eu-west-1.compute.internal/"},"actions":{},"pagination":{"limit":1000,"total":4},"sort":{"order":"asc","reverse":"https://ip-100-72-100-11.eu-west-1.compute.internal/?order=desc"},"resourceType":"apiRoot","data":[{"apiVersion":{"group":"meta.cattle.io","path":"/meta","version":"v1"},"baseType":"apiRoot","links":{"apiRoots":"https://ip-100-72-100-11.eu-west-1.compute.internal/meta/apiroots","root":"https://ip-100-72-100-11.eu-west-1.compute.internal/meta","schemas":"https://ip-100-72-100-11.eu-west-1.compute.internal/meta/schemas","self":"https://ip-100-72-100-11.eu-west-1.compute.internal/meta","subscribe":"https://ip-100-72-100-11.eu-west-1.compute.internal/meta/subscribe"},"type":"apiRoot"},{"apiVersion":{"group":"management.cattle.io","path":"/v3","version":"v3"},"baseType":"apiRoot","links":{"authConfigs":"https://ip-100-72-100-11.eu-west-1.compute.internal/v3/authconfigs","catalogs":"https://ip-100-72-100-11.eu-west-1.compute.internal/v3/catalogs","cisBenchmarkVersions":"https://ip-100-72-100-11.eu-west-1.compute.internal/v3/cisbenchmarkversions","cisConfigs":"https://ip-100-72-100-11.eu-west-1.compute.internal/v3/cisconfigs","cloudCredentials":"https://ip-100-72-100-11.eu-west-1.compute.internal/v3/cloudcredentials","clusterAlertGroups":"https://ip-100-72-100-11.eu-west-1.compute.internal/v3/clusteralertgroups","clusterAlertRules":"https://ip-100-72-100-11.eu-west-1.compute.internal/v3/clusteralertrules","clusterAlerts":"https://ip-100-72-100-11.eu-west-1.compute.internal/v3/clusteralerts","clusterCatalogs":"https://ip-100-72-100-11.eu-west-1.compute.internal/v3/clustercatalogs","clusterLoggings":"https://ip-100-72-100-11.eu-west-1.compute.internal/v3/clusterloggings","clusterMonitorGraphs":"https://ip-100-72-100-11.eu-west-1.compute.internal/v3/clustermonitorgraphs","clusterRegistrationTokens":"https://ip-100-72-100-11.eu-west-1.compute.internal/v3/clusterregistrationtokens","clusterRoleTemplateBindings":"https://ip-100-72-100-11.eu-west-1.compute.internal/v3/clusterroletemplatebindings","clusterScans":"https://ip-100-72-100-11.eu-west-1.compute.internal/v3/clusterscans","clusterTemplateRevisions":"https://ip-100-72-100-11.eu-west-1.compute.internal/v3/clustertemplaterevisions","clusterTemplates":"https://ip-100-72-100-11.eu-west-1.compute.internal/v3/clustertemplates","clusters":"https://ip-100-72-100-11.eu-west-1.compute.internal/v3/clusters","composeConfigs":"https://ip-100-72-100-11.eu-west-1.compute.internal/v3/composeconfigs","dynamicSchemas":"https://ip-100-72-100-11.eu-west-1.compute.internal/v3/dynamicschemas","etcdBackups":"https://ip-100-72-100-11.eu-west-1.compute.internal/v3/etcdbackups","features":"https://ip-100-72-100-11.eu-west-1.compute.intern
+
+curl -k https://100.72.100.11
+default backend - 404
+
+point browser to https://52.213.187.236/
+default backend - 404
+
+try adding an /etc/hosts entry
+52.213.187.236 ip-100-72-100-11.eu-west-1.compute.internal
+
+then point your browser..
+https://ip-100-72-100-11.eu-west-1.compute.internal
+
+yes works...
+
+perhaps I'll add code.. ask for a hostname, 
+
+done..
+
+
+
+
