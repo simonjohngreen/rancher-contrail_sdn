@@ -25,13 +25,17 @@ Examples Follow:
 
 #To connect to any node in the cluster via the bastion
 
+this command sets up the nat in the bastion through to the node and can be reran on a different node
 ```
-#this command sets up the nat in the bastion through to the node and can be reran on a different node
 ssh -i [your private ssh key file] ubuntu@[bastion host public ip address] sudo /usr/bin/add-nat.sh -n [node private ip address]
-#this command will ssh into the node
+```
+this command will ssh into the node
+```
 ssh -i [your private ssh key file] ubuntu@[bastion host public ip address] -p 222 
 sudo bash
+```
 #this command will allow you to switch between kubernetes contexts, the rke1 build node and the actual kubernetes+contrail cluster, both are kubernetes. 
+```
 switch
 #then treate it like any other kubernetes cluster
 kubectl get nodes -A -o wide
@@ -39,8 +43,8 @@ kubectl get pods -A -o wide
 #I've put some test stripts in /root/Testing-k8s
 ```
 
-#the config files for the Rancher build node are in /root
-#the config files for the rke1 cluster integrated into contrail are in /root/cluster1
+the config files for the Rancher build node are in /root
+the config files for the rke1 cluster integrated into contrail are in /root/cluster1
 
 example: connect to the rancher buildnode (it uses a fixed ip address)
 ``` 
