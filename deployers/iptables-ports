@@ -1,0 +1,44 @@
+#!/bin/bash
+cat > /usr/bin/iptablesrules.sh <<EOF
+#!/bin/bash
+iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+iptables -A INPUT -p tcp --dport 6443 -j ACCEPT
+iptables -A INPUT -p tcp --dport 2379 -j ACCEPT
+iptables -A INPUT -p tcp --dport 2380 -j ACCEPT
+iptables -A INPUT -p tcp --dport 10250 -j ACCEPT
+iptables -A INPUT -p tcp --dport 10251 -j ACCEPT
+iptables -A INPUT -p tcp --dport 10252 -j ACCEPT
+iptables -A INPUT -p tcp --dport 10255 -j ACCEPT
+iptables -A INPUT -p tcp --dport 8143 -j ACCEPT
+iptables -A INPUT -p udp --dport 6635 -j ACCEPT
+iptables -A INPUT -p tcp --dport 179 -j ACCEPT
+iptables -A INPUT -p tcp --dport 5269 -j ACCEPT
+iptables -A INPUT -p tcp --dport 5222 -j ACCEPT
+iptables -A INPUT -p tcp --dport 5998 -j ACCEPT
+iptables -A INPUT -p tcp --dport 8092 -j ACCEPT
+iptables -A INPUT -p tcp --dport 8093  -j ACCEPT
+iptables -A INPUT -p tcp --dport 8081 -j ACCEPT
+iptables -A INPUT -p tcp --dport 8082 -j ACCEPT
+iptables -A INPUT -p tcp --dport 8095 -j ACCEPT
+iptables -A INPUT -p tcp --dport 8084 -j ACCEPT
+iptables -A INPUT -p tcp --dport 8085 -j ACCEPT
+iptables -A INPUT -p tcp --dport 8086 -j ACCEPT
+iptables -A INPUT -p tcp --dport 8087 -j ACCEPT
+iptables -A INPUT -p tcp --dport 8088 -j ACCEPT
+iptables -A INPUT -p tcp --dport 9090 -j ACCEPT
+iptables -A INPUT -p tcp --dport 9096 -j ACCEPT
+iptables -A INPUT -p tcp --dport 8083  -j ACCEPT
+EOF
+cat > /etc/systemd/system/iptablesrules.service <<EOF
+[Unit]
+Description=ethtool script
+
+[Service]
+ExecStart=/usr/bin/iptablesrules.sh
+
+[Install]
+WantedBy=multi-user.target
+EOF
+chmod a+x /usr/bin/iptablesrules.sh
+systemctl enable iptablesrules
+systemctl start iptablesrules

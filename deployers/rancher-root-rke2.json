@@ -55,7 +55,7 @@
         "SiteName": {
             "Description": "Site Name",
             "Type": "String",
-            "Default": "rancher"
+            "Default": "rancherrke2"
         },
         "VPCDOMAIN": {
             "Description": "VCP domain type",

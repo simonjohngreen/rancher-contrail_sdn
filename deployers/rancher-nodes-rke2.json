@@ -100,7 +100,7 @@
         "SiteName": {
             "Description": "Site Name",
             "Type": "String",
-            "Default": "rancher"
+            "Default": "rancherrke2"
         },
         "SSHPassword": {
             "Description": "SSH Password",
@@ -669,7 +669,7 @@
             "PrivateIpAddress" : { "Ref" : "ContrailBastionAZ1PublicIP" },
             "SourceDestCheck" : "false",
             "SubnetId"        : { "Ref" : "idPublicSubnet1" },
-            "Tags"            : [ {"Key" : "Name", "Value" : "Interface 0"}, {"Key" : "Interface", "Value" : "eth0"} ]
+            "Tags"            : [ {"Key" : "Name", "Value" : "Bastion rke2 Interface 0"}, {"Key" : "Interface", "Value" : "eth0"} ]
           }
         },
         "Eth1Bastion" : {
@@ -681,7 +681,7 @@
             "PrivateIpAddress" : { "Ref" : "ContrailBastionAZ1PrivateIP" },
             "SourceDestCheck" : "false",
             "SubnetId"        : { "Ref" : "idPrivateSubnet1" },
-            "Tags"            : [ {"Key" : "Name", "Value" : "Interface 1"}, {"Key" : "Interface", "Value" : "eth1"} ]
+            "Tags"            : [ {"Key" : "Name", "Value" : "Bastion rke2 Interface 1"}, {"Key" : "Interface", "Value" : "eth1"} ]
             }
         },
         "RancherBuildInstance": {
@@ -847,8 +847,8 @@
                                "#################\n",
                                "#finish off rancher\n",
                                "#################\n",
-                               "kubectl get daemonset rancher -n cattle-system\n",
-                               "kubectl get pod -n cattle-system\n",
+                               "#kubectl get daemonset rancher -n cattle-system\n",
+                               "#kubectl get pod -n cattle-system\n",
                                "cat > /root/wait-for-reset.sh <<EOF\n",
                                "#!/bin/bash\n",
                                "while ! rancherd reset-admin --password ", { "Ref": "ContrailPassword" }, "\n", 
@@ -899,7 +899,7 @@
             "PrivateIpAddress" : { "Ref" : "RancherAZ1PrivateIP" },
             "SourceDestCheck" : "false",
             "SubnetId"        : { "Ref" : "idPrivateSubnet1" },
-            "Tags"            : [ {"Key" : "Name", "Value" : "Rancher Interface 0"}, {"Key" : "Interface", "Value" : "eth0"} ]
+            "Tags"            : [ {"Key" : "Name", "Value" : "Rancher rke2 Interface 0"}, {"Key" : "Interface", "Value" : "eth0"} ]
           }
         },
         "rancherNodeLaunchConfig" : {

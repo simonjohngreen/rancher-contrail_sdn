@@ -1,1 +1,2 @@
-aws cloudformation delete-stack --stack-name Rancher
+aws cloudformation delete-stack --stack-name Rancherrke1
+aws cloudformation delete-stack --stack-name Rancherrke2

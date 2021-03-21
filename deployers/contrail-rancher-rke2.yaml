@@ -264,8 +264,8 @@ spec:
         - mountPath: /mnt
           name: docker-unix-socket
       - name: contrail-analyticsdb-provisioner
-        #image: "hub.juniper.net/contrail/contrail-provisioner:[RELEASE]"
-        image: "docker.io/simonjohngreen/contrail-provisioner:2008.121-patch1"
+        image: "hub.juniper.net/contrail/contrail-provisioner:[RELEASE]"
+        #image: "docker.io/simonjohngreen/contrail-provisioner:2008.121-patch1"
         imagePullPolicy: ""
         securityContext:
           privileged: true
@@ -408,8 +408,8 @@ spec:
         - mountPath: /mnt
           name: docker-unix-socket
       - name: contrail-config-database-provisioner
-        #image: "hub.juniper.net/contrail/contrail-provisioner:[RELEASE]"
-        image: "docker.io/simonjohngreen/contrail-provisioner:2008.121-patch1"
+        image: "hub.juniper.net/contrail/contrail-provisioner:[RELEASE]"
+        #image: "docker.io/simonjohngreen/contrail-provisioner:2008.121-patch1"
         imagePullPolicy: ""
         envFrom:
         - configMapRef:
@@ -536,8 +536,8 @@ spec:
         - mountPath: /mnt
           name: docker-unix-socket
       - name: contrail-analytics-provisioner
-        #image: "hub.juniper.net/contrail/contrail-provisioner:[RELEASE]"
-        image: "docker.io/simonjohngreen/contrail-provisioner:2008.121-patch1"
+        image: "hub.juniper.net/contrail/contrail-provisioner:[RELEASE]"
+        #image: "docker.io/simonjohngreen/contrail-provisioner:2008.121-patch1"
         imagePullPolicy: ""
         envFrom:
         - configMapRef:
@@ -670,8 +670,8 @@ spec:
         - mountPath: /mnt
           name: docker-unix-socket
       - name: contrail-analytics-snmp-provisioner
-        #image: "hub.juniper.net/contrail/contrail-provisioner:[RELEASE]"
-        image: "docker.io/simonjohngreen/contrail-provisioner:2008.121-patch1"
+        image: "hub.juniper.net/contrail/contrail-provisioner:[RELEASE]"
+        #image: "docker.io/simonjohngreen/contrail-provisioner:2008.121-patch1"
         imagePullPolicy: ""
         securityContext:
           privileged: true
@@ -812,8 +812,8 @@ spec:
         - mountPath: /mnt
           name: docker-unix-socket
       - name: contrail-analytics-alarm-provisioner
-        #image: "hub.juniper.net/contrail/contrail-provisioner:[RELEASE]"
-        image: "docker.io/simonjohngreen/contrail-provisioner:2008.121-patch1"
+        image: "hub.juniper.net/contrail/contrail-provisioner:[RELEASE]"
+        #image: "docker.io/simonjohngreen/contrail-provisioner:2008.121-patch1"
         imagePullPolicy: ""
         securityContext:
           privileged: true
@@ -953,8 +953,8 @@ spec:
         - mountPath: /mnt
           name: docker-unix-socket
       - name: contrail-controller-provisioner
-        #image: "hub.juniper.net/contrail/contrail-provisioner:[RELEASE]"
-        image: "docker.io/simonjohngreen/contrail-provisioner:2008.121-patch1"
+        image: "hub.juniper.net/contrail/contrail-provisioner:[RELEASE]"
+        #image: "docker.io/simonjohngreen/contrail-provisioner:2008.121-patch1"
         imagePullPolicy: ""
         envFrom:
         - configMapRef:
@@ -1108,8 +1108,8 @@ spec:
         - mountPath: /mnt
           name: docker-unix-socket
       - name: contrail-controller-config-provisioner
-        #image: "hub.juniper.net/contrail/contrail-provisioner:[RELEASE]"
-        image: "docker.io/simonjohngreen/contrail-provisioner:2008.121-patch1"
+        image: "hub.juniper.net/contrail/contrail-provisioner:[RELEASE]"
+        #image: "docker.io/simonjohngreen/contrail-provisioner:2008.121-patch1"
         imagePullPolicy: ""
         envFrom:
         - configMapRef:
@@ -1463,8 +1463,8 @@ spec:
         - mountPath: /host/bin
           name: host-bin
       - name: contrail-kubernetes-cni-init
-        #image: "hub.juniper.net/contrail/contrail-kubernetes-cni-init:[RELEASE]"
-        image: docker.io/simonjohngreen/contrail-kubernetes-cni-init:2008.121-mtu-patch 
+        image: "hub.juniper.net/contrail/contrail-kubernetes-cni-init:[RELEASE]"
+        #image: docker.io/simonjohngreen/contrail-kubernetes-cni-init:2008.121-mtu-patch 
         imagePullPolicy: ""
         envFrom:
         - configMapRef:
@@ -1539,8 +1539,8 @@ spec:
         - mountPath: /mnt
           name: docker-unix-socket
       - name: contrail-agent-provisioner
-        #image: "hub.juniper.net/contrail/contrail-provisioner:[RELEASE]"
-        image: "docker.io/simonjohngreen/contrail-provisioner:2008.121-patch1"
+        image: "hub.juniper.net/contrail/contrail-provisioner:[RELEASE]"
+        #image: "docker.io/simonjohngreen/contrail-provisioner:2008.121-patch1"
         imagePullPolicy: ""
         envFrom:
         - configMapRef:

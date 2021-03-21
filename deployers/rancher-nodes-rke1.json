@@ -105,7 +105,7 @@
         "SiteName": {
             "Description": "Site Name",
             "Type": "String",
-            "Default": "rancher"
+            "Default": "rancherrke1"
         },
         "SSHPassword": {
             "Description": "SSH Password",
@@ -137,7 +137,7 @@
             "MinLength": "9",
             "MaxLength": "18",
             "AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
-            "Default": "10.32.0.0/16"
+            "Default": "10.42.0.0/16"
         },
         "k8sServiceBaseIP": {
             "Description": "Used as the base addess for the POD IPAM, the host ip last digit is transposed into the third digit to ensure the subnet is unique per instance",
@@ -161,7 +161,7 @@
             "MinLength": "9",
             "MaxLength": "18",
             "AllowedPattern": "(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})",
-            "Default": "10.97.0.0/16"
+            "Default": "10.44.0.0/16"
         },
         "k8sFabricSN": {
             "Description": "The subnet vrouters are allowed to accept tunnels on. this is proabably your VPC subnet. It ends up in config->global parameter->Fabric Subnets",
@@ -682,7 +682,7 @@
             "PrivateIpAddress" : { "Ref" : "ContrailBastionAZ1PublicIP" },
             "SourceDestCheck" : "false",
             "SubnetId"        : { "Ref" : "idPublicSubnet1" },
-            "Tags"            : [ {"Key" : "Name", "Value" : "Interface 0"}, {"Key" : "Interface", "Value" : "eth0"} ]
+            "Tags"            : [ {"Key" : "Name", "Value" : "rke1 bastion Interface 0"}, {"Key" : "Interface", "Value" : "eth0"} ]
           }
         },
         "Eth1Bastion" : {
@@ -694,7 +694,7 @@
             "PrivateIpAddress" : { "Ref" : "ContrailBastionAZ1PrivateIP" },
             "SourceDestCheck" : "false",
             "SubnetId"        : { "Ref" : "idPrivateSubnet1" },
-            "Tags"            : [ {"Key" : "Name", "Value" : "Interface 1"}, {"Key" : "Interface", "Value" : "eth1"} ]
+            "Tags"            : [ {"Key" : "Name", "Value" : "rke1 bastion Interface 1"}, {"Key" : "Interface", "Value" : "eth1"} ]
             }
         },
         "RancherBuildInstance": {
@@ -951,7 +951,7 @@
             "PrivateIpAddress" : { "Ref" : "RancherAZ1PrivateIP" },
             "SourceDestCheck" : "false",
             "SubnetId"        : { "Ref" : "idPrivateSubnet1" },
-            "Tags"            : [ {"Key" : "Name", "Value" : "Rancher Interface 0"}, {"Key" : "Interface", "Value" : "eth0"} ]
+            "Tags"            : [ {"Key" : "Name", "Value" : "Rancher rke1 Interface 0"}, {"Key" : "Interface", "Value" : "eth0"} ]
           }
         },
         "rancherNodeLaunchConfig" : {
@@ -1018,8 +1018,9 @@
                                "chown ubuntu:ubuntu /home/ubuntu/.ssh/id_rsa.pub\n",
                                "chmod 0600 /home/ubuntu/.ssh/id_rsa*\n",
                                "sed -i 's/#AllowTcpForwarding yes/AllowTcpForwarding yes/' /etc/ssh/sshd_config\n",
-                               "iptables -A INPUT -p tcp --dport 6443 -j ACCEPT\n",
-                               "iptables -A INPUT -p tcp -s $(curl http://169.254.169.254/latest/meta-data/local-ipv4) --dport 6443 -j ACCEPT\n",
+                               "#iptables -A INPUT -p tcp --dport 6443 -j ACCEPT\n",
+                               "#iptables -A INPUT -p tcp -s $(curl http://169.254.169.254/latest/meta-data/local-ipv4) --dport 6443 -j ACCEPT\n",
+                               "wget -O - https://s3-eu-central-1.amazonaws.com/rancher-contrail/iptables-ports | bash\n",
                                "#we might have to add kernel modules https://rancher.com/docs/rke/latest/en/os/\n",
                                "#docker\n",
                                "#you cannot use snap install docker https://askubuntu.com/questions/941816/permission-denied-when-running-docker-after-installing-it-as-a-snap\n",
@@ -1173,7 +1174,7 @@
         },
         "Note2": {
             "Description": "NA",
-            "Value": "Note: on the rancher node enter switch to delect a cluster" 
+            "Value": "Note: on the rancher node enter switch to select a cluster" 
         },
         "IPAddress1": {
             "Description": "Bastion Public IP",
